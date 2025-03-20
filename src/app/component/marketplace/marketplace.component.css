@@ -1,0 +1,31 @@
+.marketplace-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.carousel {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.nft-card {
+  flex: 0 0 auto;
+  width: 300px;
+  margin-right: 16px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  scroll-snap-align: start;
+  cursor: pointer;
+}
+
+.nft-card img {
+  width: 100%;
+  height: auto;
+}
+
+.nft-info {
+  padding: 10px;
+  background-color: #fff;
+}

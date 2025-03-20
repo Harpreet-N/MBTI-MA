@@ -15,7 +15,8 @@ import {BuyCryptoComponent} from '../buy-crypto/buy-crypto.component';
     MatProgressBar,
     VideoComponent,
     BuyCryptoComponent
-  ], templateUrl: './gas.component.html', standalone: true,
+  ], templateUrl: './gas.component.html',
+  standalone: true,
   styleUrl: './gas.component.css'
 })
 export class GasComponent {
@@ -25,9 +26,6 @@ export class GasComponent {
   @Input() progress?: number = 0;
   currentIndex = 0;
   buyGasComponet: boolean = false;
-
-
-
 
   onboarding: OnboardingStep[] = [
     {

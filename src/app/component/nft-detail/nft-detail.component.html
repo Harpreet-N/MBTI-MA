@@ -1,0 +1,22 @@
+<div class="nft-detail-container" *ngIf="nft as nft">
+  <button mat-icon-button (click)="router.navigate(['/marketplace'])">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <img [src]="nft.imageUrl" alt="{{ nft.title }}" class="nft-detail-img">
+
+  <h2>{{ nft.title }}</h2>
+  <p>{{ nft.description }}</p>
+
+  <div class="tags">
+    <span *ngFor="let tag of nft.tags">{{ tag }}</span>
+  </div>
+
+  <div class="price-card">
+    <p>Current Price</p>
+    <h3>{{ nft?.priceEth }} ETH</h3>
+    <p>€{{ nft?.priceEur }}</p>
+
+    <button mat-flat-button color="primary" (click)="buyNFT()">Buy</button>
+  </div>
+</div>

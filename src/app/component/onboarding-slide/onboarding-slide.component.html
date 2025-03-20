@@ -5,7 +5,7 @@
 
   <div *ngIf="onboarding[currentIndex].video" class="video-container">
     <h3>Video</h3>
-    <app-video [videoIframeString]="onboarding[currentIndex]?.video || ''"></app-video>
+    <app-video [videoIframeString]="onboarding[currentIndex].video || ''"></app-video>
   </div>
 
   <mat-progress-bar *ngIf="onboarding[currentIndex].progress != null"

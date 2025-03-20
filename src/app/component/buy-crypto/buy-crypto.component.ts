@@ -34,6 +34,25 @@ import {Router} from '@angular/router';
     button {
       margin-top: 16px;
     }
+
+    .dialog-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .success-icon {
+      font-size: 24px;
+      color: #4CAF50;
+      margin-bottom: 16px;
+    }
+
+    button {
+      margin-top: 16px;
+    }
+
   `]
 })
 export class SuccessDialogComponent {

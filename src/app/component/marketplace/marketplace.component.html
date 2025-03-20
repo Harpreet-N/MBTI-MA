@@ -1,0 +1,14 @@
+<div class="marketplace-container">
+  <h1>Your Digital Art</h1>
+
+  <div class="carousel">
+    <div *ngFor="let nft of nfts" class="nft-card" (click)="viewDetails(nft)">
+      <img [src]="nft.imageUrl" alt="{{ nft.title }}">
+      <div class="nft-info">
+        <h3>{{ nft.title }}</h3>
+        <p><strong>{{ nft.creator }}</strong></p>
+        <p>Reserve Price <strong>{{ nft.priceEth }} ETH</strong> (€{{ nft.priceEur }})</p>
+      </div>
+    </div>
+  </div>
+</div>
