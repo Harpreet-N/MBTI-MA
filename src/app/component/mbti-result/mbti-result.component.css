@@ -1,0 +1,49 @@
+.screen-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 1.75em;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.description {
+  flex: 1;
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+  max-width: 500px;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 500px;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.navigation-buttons button {
+  flex: 1;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+/* Optional: Disable button style (if needed later) */
+.navigation-buttons button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

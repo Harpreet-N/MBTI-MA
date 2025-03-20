@@ -1,0 +1,44 @@
+<!-- Step 1: Your Result -->
+<div *ngIf="currentStep === 1" class="screen-container">
+  <h2 class="title">YOUR RESULT</h2>
+
+  <div class="description">
+    <p>{{ description }}</p>
+  </div>
+
+  <!-- Navigation Buttons (Styled like the quiz component) -->
+  <div class="navigation-buttons">
+    <!-- No Back button on first screen -->
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="nextStep()">
+      Next
+    </button>
+  </div>
+</div>
+
+<!-- Step 2: Your Best Compatibility -->
+<div *ngIf="currentStep === 2" class="screen-container">
+  <h2 class="title">Your best compatibility is</h2>
+
+  <div class="description">
+    <p>{{ compatibilityDescription }}</p>
+  </div>
+
+  <!-- Navigation Buttons -->
+  <div class="navigation-buttons">
+    <button
+      mat-stroked-button
+      (click)="prevStep()">
+      Back
+    </button>
+
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="nextStep()">
+      Next
+    </button>
+  </div>
+</div>

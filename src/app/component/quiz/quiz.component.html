@@ -1,0 +1,35 @@
+<div class="quiz-container" *ngIf="!quizDone">
+  <!-- Question Number -->
+  <div class="question-number">
+    {{ currentIndex + 1 }}/{{ quiz.length }}
+  </div>
+
+  <!-- Question -->
+  <h2>{{ quiz[currentIndex].question }}</h2>
+
+  <!-- Answers -->
+  <div class="answers">
+    <button
+      *ngFor="let answer of quiz[currentIndex]?.options"
+      class="answer-button"
+      [class.selected]="isSelected(answer.value)"
+      (click)="selectAnswer(answer.value)">
+      {{ answer.text }}
+    </button>
+  </div>
+
+  <!-- Navigation Buttons -->
+  <div class="navigation-buttons">
+    <button mat-stroked-button (click)="prev()" [disabled]="currentIndex === 0">Back</button>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="next()"
+      [disabled]="!isAnswerSelected">
+      Next
+    </button>
+  </div>
+</div>
+
+
+<app-mbti-result *ngIf="quizDone" [selectedAnswers]="selectedAnswers"></app-mbti-result>
