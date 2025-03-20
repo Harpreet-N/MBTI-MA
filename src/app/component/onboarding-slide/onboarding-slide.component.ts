@@ -3,6 +3,16 @@ import {NgIf} from '@angular/common';
 import {MatButton} from '@angular/material/button';
 import {MatProgressBar} from '@angular/material/progress-bar';
 import {QuizComponent} from '../quiz/quiz.component';
+import {VideoComponent} from '../video/video.component';
+
+export interface OnboardingStep {
+  title: string;
+  text: string | null;
+  video: string | null;
+  progress: number | null;
+}
+
+
 
 @Component({
   selector: 'app-onboarding-slide',
@@ -10,7 +20,8 @@ import {QuizComponent} from '../quiz/quiz.component';
     NgIf,
     MatButton,
     MatProgressBar,
-    QuizComponent
+    QuizComponent,
+    VideoComponent
   ],
   templateUrl: './onboarding-slide.component.html',
   standalone: true,
@@ -22,16 +33,14 @@ export class OnboardingSlideComponent {
   @Input() video?: string | undefined;
   @Input() progress?: number = 0;
   @Output() onFinish = new EventEmitter<void>();
+  @Input() displayArray?: OnboardingStep[];
 
   currentIndex = 0;
   showQuiz = false; // initially false so onboarding is shown first
 
-  completeOnboarding() {
-    // Call this when the user finishes all slides
-    this.onFinish.emit();
-  }
 
-  onboarding = [
+
+  onboarding: OnboardingStep[] = [
     {
       title: 'Welcome to Echo',
       text: 'Echo is a decentralized social platform that helps you build meaningful connections using Web3 technology.',
@@ -41,13 +50,13 @@ export class OnboardingSlideComponent {
     {
       title: 'Discover Web3',
       text: 'Web3 is the next evolution of the internet, where users have full control over their data, identities, and digital assets.',
-      video: 'https://www.youtube.com/watch?v=GmRbLcmX4A4',
+      video: `<iframe width="390" height="330" src="https://www.youtube.com/embed/GmRbLcmX4A4?si=hU8cPxwUXX1X0nZw&amp;start=3" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
       progress: 50
     },
     {
       title: 'Your Web3 Wallet',
       text: 'A Web3 wallet is your gateway to the decentralized world.',
-      video: 'https://www.youtube.com/watch?v=x1ORD2BNuDg',
+      video: `<iframe width="390" height="330" src="https://www.youtube.com/embed/x1ORD2BNuDg?si=8y5peRMYandOYrgx&amp;start=4" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
       progress: 75
     },
     {
@@ -71,7 +80,7 @@ export class OnboardingSlideComponent {
     {
       title: 'The key principle of Echo is MBTI',
       text: null,
-      video: 'https://www.youtube.com/watch?v=RoQi9Mvqip0',
+      video: `<iframe width="390" height="330" src="https://www.youtube.com/embed/RoQi9Mvqip0?si=70kTet-0bNqEBP2Q" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
       progress: null
     },
     {

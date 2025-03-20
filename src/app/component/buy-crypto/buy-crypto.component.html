@@ -1,0 +1,19 @@
+<div class="wallet-buy-container">
+  <!-- Wallet ID Label -->
+  <h2 class="wallet-title">Wallet ID:</h2>
+
+  <!-- ETH Exchange Rate Info -->
+  <p class="eth-rate">1 ETH ≈ 2 019,29 €</p>
+
+  <!-- Amount Input Field -->
+  <mat-form-field appearance="outline" class="amount-input">
+    <mat-label>Amount</mat-label>
+    <input matInput type="number" [(ngModel)]="amount" placeholder="€ 0,00">
+  </mat-form-field>
+
+  <!-- Fee Info -->
+  <p class="fee-info">Fee of 2.9% + $0.3 + gas ($5 minimum)</p>
+
+  <!-- Buy Button -->
+  <button mat-flat-button color="primary" class="buy-button" (click)="buyCrypto()">Buy</button>
+</div>

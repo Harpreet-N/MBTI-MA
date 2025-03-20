@@ -1,12 +1,14 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {NgIf} from '@angular/common';
 import {MatButton} from '@angular/material/button';
+import {GasComponent} from '../gas/gas.component';
 
 @Component({
   selector: 'app-mbti-result',
   imports: [
     NgIf,
-    MatButton
+    MatButton,
+    GasComponent,
   ],
   templateUrl: './mbti-result.component.html',
   standalone: true,
@@ -14,7 +16,7 @@ import {MatButton} from '@angular/material/button';
 })
 export class MbtiResultComponent implements OnChanges {
 
-@Input() selectedAnswers: string[] = []; // Receive the input array
+  @Input() selectedAnswers: string[] = []; // Receive the input array
   mbtiType: string = '';
   character: string = '';
   description: string = '';
@@ -188,6 +190,10 @@ export class MbtiResultComponent implements OnChanges {
     if (changes['selectedAnswers'] && this.selectedAnswers.length > 0) {
     this.calculateMBTIType();
   }
+    else {
+      this.description = 'Dev';
+      this.compatibilityDescription = 'aa';
+    }
 }
 
 private calculateMBTIType(): void {

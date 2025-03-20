@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {MatButton} from '@angular/material/button';
 import {NgForOf, NgIf} from '@angular/common';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {MbtiResultComponent} from '../mbti-result/mbti-result.component';
 
 @Component({
@@ -18,9 +17,7 @@ import {MbtiResultComponent} from '../mbti-result/mbti-result.component';
 })
 export class QuizComponent {
 
-  constructor(private http: HttpClient) {
-  }
-
+  developMode: boolean = true;
   // Array of quiz questions
   quiz = [
     {
@@ -95,7 +92,6 @@ export class QuizComponent {
     }
   ];
 
-  mbtiResult: string = '';    // GPT response stored here
   currentIndex = 0; // Track the current question index
   selectedAnswers: string[] = []; // Store selected answers
   quizDone: boolean = false;
@@ -117,7 +113,7 @@ export class QuizComponent {
 
   // Navigate to the next question
   next() {
-    if (this.currentIndex < this.quiz.length - 1) {
+    if (this.currentIndex < this.quiz.length - 1 && !this.developMode) {
       this.currentIndex++;
     } else {
       this.quizDone = true;
@@ -131,6 +127,4 @@ export class QuizComponent {
       this.currentIndex--;
     }
   }
-
-
 }

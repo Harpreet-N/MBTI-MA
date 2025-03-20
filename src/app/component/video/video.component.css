@@ -1,0 +1,11 @@
+.video-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.video-container iframe {
+  width: 100%; /* Responsive */
+  height: 315px;
+  border: none;
+}
