@@ -2,17 +2,22 @@
 <div *ngIf="currentStep === 1" class="screen-container">
   <h2 class="title">YOUR RESULT</h2>
 
+  <!-- MBTI Character Image -->
+  <div class="mbti-image-container">
+    <img [src]="mbtiImage" alt="{{ mbtiType }}" />
+  </div>
+
+  <!-- MBTI Type Name -->
+  <h3 class="mbti-type">{{ mbtiType }}</h3>
+
+  <!-- MBTI Description -->
   <div class="description">
     <p>{{ description }}</p>
   </div>
 
-  <!-- Navigation Buttons (Styled like the quiz component) -->
+  <!-- Next Button -->
   <div class="navigation-buttons">
-    <!-- No Back button on first screen -->
-    <button
-      mat-flat-button
-      color="primary"
-      (click)="nextStep()">
+    <button mat-flat-button color="primary" (click)="nextStep()">
       Next
     </button>
   </div>

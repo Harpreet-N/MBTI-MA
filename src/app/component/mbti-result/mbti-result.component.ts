@@ -25,6 +25,7 @@ export class MbtiResultComponent implements OnChanges {
   compatibilityDescription: string = '';
 
   currentStep: number = 1; // 1 = Result Screen, 2 = Compatibility Screen
+  mbtiImage: string = '';
 
 
   private mbtiDescriptions: any = {
@@ -180,6 +181,26 @@ export class MbtiResultComponent implements OnChanges {
     ENTJ: 'INTP'
   };
 
+  private mbtiImages: any = {
+    ISTJ: 'assets/images/istj.png',
+    ISFJ: 'assets/images/isfj.png',
+    INFJ: 'assets/images/infj.png',
+    INTJ: 'assets/images/intj.png',
+    ISTP: 'assets/images/istp.png',
+    ISFP: 'assets/images/isfp.png',
+    INFP: 'assets/images/infp.png',
+    INTP: 'assets/images/intp.png',
+    ESTP: 'assets/images/estp.png',
+    ESFP: 'assets/images/esfp.png',
+    ENFP: 'assets/images/enfp.png',
+    ENTP: 'assets/images/entp.png',
+    ESTJ: 'assets/images/estj.png',
+    ESFJ: 'assets/images/esfj.png',
+    ENFJ: 'assets/images/enfj.png',
+    ENTJ: 'assets/images/entj.png'
+  };
+
+
   ngOnInit(): void {
     this.calculateMBTIType();
     this.getCompatibility();
@@ -196,7 +217,7 @@ export class MbtiResultComponent implements OnChanges {
     }
 }
 
-private calculateMBTIType(): void {
+  private calculateMBTIType(): void {
     const counts = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
 
     this.selectedAnswers.forEach(letter => {
@@ -214,6 +235,7 @@ private calculateMBTIType(): void {
     this.mbtiType = first + second + third + fourth;
 
     const mbtiInfo = this.mbtiDescriptions[this.mbtiType];
+    this.mbtiImage = this.mbtiImages[this.mbtiType] || 'assets/images/default.png';
 
     if (mbtiInfo) {
       this.character = mbtiInfo.character;
@@ -223,6 +245,7 @@ private calculateMBTIType(): void {
       this.description = 'No description available for this type.';
     }
   }
+
   getCompatibility(): void {
     const match = this.compatibilityPairs[this.mbtiType] || 'Unknown';
     const matchInfo = this.mbtiDescriptions[match];
