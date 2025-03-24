@@ -98,18 +98,26 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     // Fetch MBTI and Compatibility from session storage
-    const mbtiType = sessionStorage.getItem('mbtiType');
-    const compatibleType = sessionStorage.getItem('compatibleType');
-
-    this.user.mbtiType = mbtiType ?? 'Unknown';
-    this.user.compatibility = compatibleType ?? 'Unknown';
+    this.loadMbtiFromSession();
+    this.loadJoinedEventsFromSession();
     this.getDate();
+    this.loadNFTList();
+  }
 
-
+  private loadNFTList() {
     const savedNfts = sessionStorage.getItem('nftList');
 
     this.nftList = savedNfts ? JSON.parse(savedNfts) : [];
+  }
 
+  private loadMbtiFromSession(): void {
+    this.user.mbtiType = sessionStorage.getItem('mbtiType') || 'Unknown';
+    this.user.compatibility = sessionStorage.getItem('compatibleType') || 'Unknown';
+  }
+
+  private loadJoinedEventsFromSession(): void {
+    const storedEvents = JSON.parse(sessionStorage.getItem('joinedEvents') || '[]');
+    this.upcomingEvents = storedEvents.length ? storedEvents : [];
   }
 
 

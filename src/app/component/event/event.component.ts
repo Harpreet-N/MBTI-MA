@@ -115,6 +115,17 @@ export class EventComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'joined') {
+        // 1. Load existing events from session storage (or initialize an empty array)
+        const storedEvents = JSON.parse(sessionStorage.getItem('joinedEvents') || '[]');
+
+        // 2. Add the newly joined event (if not already in the list)
+        const eventExists = storedEvents.find((e: any) => e.title === this.selectedEvent?.title);
+        if (!eventExists && this.selectedEvent) {
+          storedEvents.push(this.selectedEvent);
+          sessionStorage.setItem('joinedEvents', JSON.stringify(storedEvents));
+        }
+
+        // 3. Navigate to profile (or handle as you need)
         this.router.navigate(['/profile']);
       }
     });
