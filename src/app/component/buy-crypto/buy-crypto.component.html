@@ -1,19 +1,36 @@
 <div class="wallet-buy-container">
-  <!-- Wallet ID Label -->
-  <h2 class="wallet-title">Wallet ID:</h2>
+  <!-- Header -->
+  <h2 class="wallet-title">Buy Cryptocurrency</h2>
 
-  <!-- ETH Exchange Rate Info -->
-  <p class="eth-rate">1 ETH ≈ 2 019,29 €</p>
+  <!-- Wallet Information -->
+  <div class="wallet-info">
+    <p><strong>Wallet ID:</strong> {{ walletId || '1234-5678-9012' }}</p>
+  </div>
 
-  <!-- Amount Input Field -->
-  <mat-form-field appearance="outline" class="amount-input">
-    <mat-label>Amount</mat-label>
-    <input matInput type="number" [(ngModel)]="amount" placeholder="€ 0,00">
+  <!-- Current ETH Rate -->
+  <div class="eth-rate-container">
+    <p class="eth-rate">1 ETH ≈ {{ ethPrice | number:'1.2-2' }} €</p>
+  </div>
+
+  <!-- Input Field for Euro Amount -->
+  <mat-form-field appearance="fill" class="amount-input">
+    <mat-label>Enter amount in Euro (€)</mat-label>
+    <input matInput type="number" [(ngModel)]="amount" (ngModelChange)="updateETHAmount()" placeholder="€ 0.00">
   </mat-form-field>
 
+  <!-- Display Calculated ETH Amount -->
+  <div class="eth-amount-display" *ngIf="amount > 0">
+    <p>You'll receive approximately:</p>
+    <h3>{{ ethAmount | number:'1.6-6' }} ETH</h3>
+  </div>
+
   <!-- Fee Info -->
-  <p class="fee-info">Fee of 2.9% + $0.3 + gas ($5 minimum)</p>
+  <div class="fee-info">
+    <p><mat-icon>info</mat-icon> Fee: 2.9% + $0.3 + gas ($5 minimum)</p>
+  </div>
 
   <!-- Buy Button -->
-  <button mat-flat-button color="primary" class="buy-button" (click)="buyCrypto()">Buy</button>
+  <button mat-flat-button color="primary" class="buy-button" [disabled]="amount <= 0" (click)="buyCrypto()">
+    Buy Now
+  </button>
 </div>

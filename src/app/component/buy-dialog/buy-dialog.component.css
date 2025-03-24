@@ -8,10 +8,53 @@
 
 .success-icon {
   font-size: 24px;
-  color: #4CAF50;
+  color: #FFC107; /* Yellow icon for confirmation */
   margin-bottom: 16px;
 }
 
+.dialog-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.dialog-message {
+  font-size: 1rem;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.price-info {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 24px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.label {
+  font-weight: 500;
+  color: #666;
+}
+
+.value {
+  font-weight: bold;
+  color: #333;
+}
+
+.dialog-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  width: 100%;
+}
+
 button {
-  margin-top: 16px;
+  flex: 1;
+  margin-top: 0;
 }

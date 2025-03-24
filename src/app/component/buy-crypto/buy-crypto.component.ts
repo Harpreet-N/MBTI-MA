@@ -6,6 +6,7 @@ import {MatInput} from '@angular/material/input';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {MatIcon} from '@angular/material/icon';
 import {Router} from '@angular/router';
+import {DecimalPipe, NgIf} from '@angular/common';
 
 
 
@@ -18,23 +19,26 @@ import {Router} from '@angular/router';
   ],
   template: `
     <div class="dialog-container">
-      <mat-icon class="success-icon" color="primary">check_circle</mat-icon>
-      <h2 class="dialog-title">Success!</h2>
+      <mat-icon class="success-icon" color="primary">info</mat-icon>
+
+      <h2 class="dialog-title">Confirm Purchase</h2>
+
       <p class="dialog-message">
-        You've successfully bought <strong>{{ data.ethAmount.toFixed(6) }}</strong> ETH for <strong>{{ data.amount.toFixed(2) }} €</strong>.
+        Are you sure you want to buy <strong>{{ data.ethAmount.toFixed(6) }}</strong> ETH for <strong>{{ data.amount.toFixed(2) }} €</strong>?
       </p>
+
       <p class="dialog-fee">
         Total fees: <strong>{{ data.fee.toFixed(2) }} €</strong>
       </p>
 
-      <button mat-flat-button color="primary" (click)="goToProfile()">Go to Profile</button>
+      <div class="dialog-buttons">
+        <button mat-stroked-button color="warn" (click)="cancel()">Cancel</button>
+
+        <button mat-flat-button color="primary" (click)="confirmBuy()">Buy Crypto</button>
+      </div>
     </div>
   `,
   styles: [`
-    button {
-      margin-top: 16px;
-    }
-
     .dialog-container {
       display: flex;
       flex-direction: column;
@@ -44,15 +48,34 @@ import {Router} from '@angular/router';
     }
 
     .success-icon {
-      font-size: 24px;
+      font-size: 48px;
       color: #4CAF50;
       margin-bottom: 16px;
     }
 
-    button {
-      margin-top: 16px;
+    .dialog-title {
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin-bottom: 8px;
     }
 
+    .dialog-message, .dialog-fee {
+      color: #666;
+      font-size: 1rem;
+      margin: 8px 0;
+    }
+
+    .dialog-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    button {
+      min-width: 120px;
+    }
   `]
 })
 export class SuccessDialogComponent {
@@ -62,10 +85,25 @@ export class SuccessDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: { ethAmount: number; amount: number; fee: number }
   ) {}
 
-  goToProfile() {
-    this.dialogRef.close();
-    this.router.navigate(['/profile']); // You need to have /profile route configured
+  cancel() {
+    this.dialogRef.close(false);
   }
+
+
+
+  confirmBuy() {
+    // Logic after confirming the buy
+    this.dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.router.navigate(['/profile']); // Navigate to profile after buy
+      } else {
+        this.dialogRef.close(true);
+      }
+    });
+
+  }
+
+
 }
 
 @Component({
@@ -76,7 +114,10 @@ export class SuccessDialogComponent {
     MatButton,
     MatInput,
     MatLabel,
-    SuccessDialogComponent
+    SuccessDialogComponent,
+    MatIcon,
+    DecimalPipe,
+    NgIf
   ],
   templateUrl: './buy-crypto.component.html',
   standalone: true,
@@ -88,15 +129,21 @@ export class BuyCryptoComponent {
   ethPrice: number = 2019.29;
   amount: number = 0;
   ethAmount: number = 0;
+  walletId: string = '1234-5678-9012';  // Replace with your real wallet ID logic
 
-  constructor(private dialog: MatDialog) {}
-
-  updateETHAmount() {
-    this.ethAmount = this.amount / this.ethPrice;
+  updateETHAmount(): void {
+    if (this.amount > 0) {
+      this.ethAmount = this.amount / this.ethPrice;
+    } else {
+      this.ethAmount = 0;
+    }
   }
 
-  buyCrypto() {
-    this.updateETHAmount();
+  buyCrypto(): void {
+    if (this.amount <= 0) {
+      alert('Please enter a valid amount!');
+      return;
+    }
 
     const feePercentage = 0.029;
     const flatFee = 0.3;
@@ -106,9 +153,6 @@ export class BuyCryptoComponent {
     if (fee < minFee) {
       fee = minFee;
     }
-
-    console.log(`Buying ${this.ethAmount.toFixed(6)} ETH for ${this.amount} EUR, fee: ${fee} EUR`);
-
     this.dialog.open(SuccessDialogComponent, {
       width: '300px',
       data: {
@@ -118,4 +162,7 @@ export class BuyCryptoComponent {
       }
     });
   }
+
+
+  constructor(private dialog: MatDialog) {}
 }

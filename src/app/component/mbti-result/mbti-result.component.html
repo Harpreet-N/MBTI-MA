@@ -27,6 +27,12 @@
 <div *ngIf="currentStep === 2" class="screen-container">
   <h2 class="title">Your best compatibility is</h2>
 
+  <!-- 🔥 Compatibility Image -->
+  <div class="mbti-image-container">
+    <img *ngIf="compatibilityImage" [src]="compatibilityImage" [alt]="compatibleType">
+  </div>
+
+  <!-- Compatibility Description -->
   <div class="description">
     <p>{{ compatibilityDescription }}</p>
   </div>
@@ -48,9 +54,10 @@
   </div>
 </div>
 
+
 <!-- Step 2: Your Best Compatibility -->
 <div *ngIf="currentStep === 3" class="screen-container">
-  <h2 class="title">COIN?</h2>
+  <h2 class="title">Buy some Crypto</h2>
   <app-gas></app-gas>
 
 </div>

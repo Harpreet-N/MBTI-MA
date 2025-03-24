@@ -17,22 +17,32 @@ export class MarketplaceComponent {
   nfts: NFT[] = [
     {
       id: 1,
-      title: 'Silent Wave',
+      title: 'Panda Wave',
       creator: 'Pawel Czerwinski',
       priceEth: 1.5,
       priceEur: 2683.73,
-      imageUrl: 'assets/images/nft1.jpg',
-      description: 'This is an amazing Silent Wave NFT artwork.',
+      imageUrl: 'assets/images/panda.jpg',
+      description: 'This is an amazing Panda NFT artwork.',
       tags: ['#art', '#wave']
     },
     {
       id: 2,
-      title: 'Silent Color',
+      title: 'Bear',
       creator: 'Team CyberYacht',
       priceEth: 0.5,
       priceEur: 2683.73,
-      imageUrl: 'assets/images/nft2.jpg',
-      description: 'Futuristic CyberYacht concept artwork.',
+      imageUrl: 'assets/images/bear.jpg',
+      description: 'Bear concept artwork.',
+      tags: ['#color', '#circle', '#black', '#art']
+    },
+    {
+      id: 2,
+      title: 'Polarbear',
+      creator: 'Cold',
+      priceEth: 0.5,
+      priceEur: 2683.73,
+      imageUrl: 'assets/images/polarbear.jpg',
+      description: 'Snowwhite polar Bear',
       tags: ['#color', '#circle', '#black', '#art']
     }
   ];

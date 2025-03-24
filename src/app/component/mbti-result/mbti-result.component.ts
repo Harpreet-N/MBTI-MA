@@ -26,6 +26,7 @@ export class MbtiResultComponent implements OnChanges {
 
   currentStep: number = 1; // 1 = Result Screen, 2 = Compatibility Screen
   mbtiImage: string = '';
+  compatibilityImage: string = '';
 
 
   private mbtiDescriptions: any = {
@@ -251,10 +252,18 @@ export class MbtiResultComponent implements OnChanges {
     const matchInfo = this.mbtiDescriptions[match];
 
     this.compatibleType = match;
-    this.compatibilityDescription = matchInfo
-      ? `${matchInfo.character}: ${matchInfo.description}`
-      : 'No compatibility description available.';
+
+    if (matchInfo) {
+      this.compatibilityDescription = `${matchInfo.character}: ${matchInfo.description}`;
+
+      // 🔥 Set the image path for the compatible type
+      this.compatibilityImage = `assets/images/${match.toLowerCase()}.png`;
+    } else {
+      this.compatibilityDescription = 'No compatibility description available.';
+      this.compatibilityImage = ''; // Or a fallback/default image
+    }
   }
+
 
   nextStep(): void {
     this.currentStep++;
