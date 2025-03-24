@@ -1,4 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Base styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #f0f0f0; /* Subtle background to emphasize the app */
+}
+
+/* Mobile App Container */
+.app-container {
+  width: 390px; /* Mobile width (you can adjust to 360px if needed) */
+  min-height: 100vh; /* Full viewport height */
+  margin: 0 auto; /* Center horizontally */
+  background-color: #ffffff; /* App background */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional shadow for 'device' look */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsive Handling for Larger Screens */
+@media (min-width: 391px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align top for mobile feel */
+  }
+
+  .app-container {
+    border-radius: 16px; /* Optional rounded corners for large screens */
+    margin-top: 32px; /* Optional margin from the top */
+  }
+}

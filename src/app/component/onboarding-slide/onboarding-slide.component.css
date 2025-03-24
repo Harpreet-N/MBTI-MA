@@ -46,46 +46,13 @@ html, body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .video-container:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-  }
 
-  .video-container h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin: 0;
-    padding: 16px 20px;
-    color: #333;
-    background-color: #f8f8f8;
-    border-bottom: 1px solid #eee;
-    text-align: center;
-  }
-
-  .video-container a {
-    color: #007bff;
-    text-decoration: none;
-    font-size: 0.9rem;
-    display: block;
-    padding: 10px;
-    text-align: center;
-    border-top: 1px solid #eee;
-  }
-
-  .video-container iframe {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 9; /* Maintain responsive scaling */
-    border: none;
-  }
 
   .custom-progress-bar {
     width: 70%; /* Make the progress bar same width as the button */
     margin-bottom: 10px;
     height: 10px;
     border-radius: 8px;
-
-
   }
 
   .custom-button {

@@ -47,7 +47,7 @@ import {DecimalPipe, NgIf} from '@angular/common';
     }
 
     .success-icon {
-      font-size: 48px;
+      font-size: 24px;
       color: #4CAF50;
       margin-bottom: 16px;
     }
