@@ -1,0 +1,97 @@
+<!-- Event List Container -->
+<div *ngIf="!selectedEvent" class="event-list-container">
+
+  <!-- Filter Dropdown Section -->
+  <mat-form-field appearance="outline" class="filter-dropdown">
+    <mat-label>Filter by MBTI Type</mat-label>
+    <mat-select [(value)]="selectedFilters" multiple (selectionChange)="applyFilters()">
+      <mat-option *ngFor="let filter of mbtiOptions" [value]="filter">{{ filter }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="filtered-title">
+    {{ selectedFilters.length ? selectedFilters.join(', ') : 'All Events' }}
+  </div>
+
+  <!-- Events Card List -->
+  <div class="event-cards">
+    <mat-card *ngFor="let event of filteredEvents" (click)="selectEvent(event)">
+      <img mat-card-image [src]="event.image" alt="{{ event.title }}">
+
+      <mat-card-content>
+        <h3>{{ event.title }}</h3>
+        <p>Type: {{ event.type.join(', ') }}</p>
+        <p>Date: {{ event.date }} | {{ event.location }}</p>
+      </mat-card-content>
+
+      <mat-card-actions class="card-actions">
+        <div class="actions-right">
+          <div class="action-item">
+            <mat-icon class="icon-small">visibility</mat-icon>
+            <span>{{ event.interested }}</span>
+          </div>
+          <div class="action-item">
+            <mat-icon class="icon-small">thumb_up</mat-icon>
+            <span>{{ event.joined }}</span>
+          </div>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+</div>
+
+<!-- Event Detail View -->
+<div *ngIf="selectedEvent" class="event-detail-container">
+
+  <!-- Back Button -->
+  <button mat-icon-button class="back-button" (click)="selectedEvent = null">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <!-- Event Image -->
+  <img class="detail-image"  [src]="selectedEvent.image" alt="{{ selectedEvent.title }}">
+
+  <!-- Event Title -->
+  <h2 class="event-title">{{ selectedEvent.title }}</h2>
+
+  <!-- Owner Information -->
+  <div class="owner-info">
+    <img class="owner-avatar" [src]="selectedEvent.avatar" alt="Owner Avatar">
+    <div>
+      <p><strong>Owner:</strong> {{ selectedEvent.owner }}</p>
+    </div>
+  </div>
+
+  <!-- Date and Time -->
+  <div class="detail-info">
+    <mat-icon>event</mat-icon>
+    <span>{{ selectedEvent.date }} at {{ selectedEvent.time }}</span>
+  </div>
+
+  <!-- Location -->
+  <div class="detail-info">
+    <mat-icon>place</mat-icon>
+    <span>{{ selectedEvent.location }}</span>
+  </div>
+
+  <!-- Event Description -->
+  <div class="event-description">
+    <h3>Description</h3>
+    <p>{{ selectedEvent.description || 'No description available for this event.' }}</p>
+  </div>
+
+  <!-- Tags -->
+  <div class="tags">
+    <mat-chip-set>
+      <mat-chip *ngFor="let type of selectedEvent.type">{{ type }}</mat-chip>
+    </mat-chip-set>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="event-actions">
+    <button mat-stroked-button color="accent" (click)="addToWatchlist()">Add to Watchlist</button>
+    <button mat-flat-button color="primary" (click)="joinEvent()">Join</button>
+  </div>
+
+</div>
