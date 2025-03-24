@@ -8,111 +8,68 @@ html, body {
 .slide-container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between; /* Pushes content to top and buttons to bottom */
   align-items: center;
-  justify-content: space-between;
   height: 100vh;
   width: 100%;
-  padding: 10px;
+  max-width: 390px;
+  margin: 0 auto;
+  padding: 16px;
   box-sizing: border-box;
+}
 
-  h2 {
-    font-size: 1.25em;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 5px;
-    line-height: 1.2;
-    color: #000;
-  }
+/* Title & Text */
+.slide-container h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 8px;
+  color: #000;
+}
 
-  p {
-    font-size: 1em;
-    text-align: center;
-    margin-bottom: auto;
-    padding: 0 10px;
-    line-height: 1.4;
-    color: #555;
-  }
+.slide-container p {
+  font-size: 1rem;
+  text-align: center;
+  color: #555;
+  margin-bottom: 16px;
+  padding: 0 10px;
+  line-height: 1.4;
+}
 
-  .video-container {
-    margin: 20px auto;
-    padding: 0;
-    width: 100%;
-    max-width: 400px;
-    border-radius: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-    box-sizing: border-box;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+/* Video Container */
+.video-container {
+  width: 100%;
+  max-width: 360px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
 
-  .video-container:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-  }
+/* Progress Bar */
+.custom-progress-bar {
+  width: 100%;
+  max-width: 360px;
+  margin-bottom: 16px; /* Push it closer to the buttons */
+  height: 8px;
+  border-radius: 8px;
+}
 
-  .video-container h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin: 0;
-    padding: 16px 20px;
-    color: #333;
-    background-color: #f8f8f8;
-    border-bottom: 1px solid #eee;
-    text-align: center;
-  }
+/* Navigation Buttons */
+.navigation-buttons {
+  display: flex;
+  justify-content: center; /* Center the button row */
+  gap: 12px;
+  width: 100%;
+  max-width: 360px;
+  margin-bottom: 8px; /* Add spacing from the bottom */
+}
 
-  .video-container a {
-    color: #007bff;
-    text-decoration: none;
-    font-size: 0.9rem;
-    display: block;
-    padding: 10px;
-    text-align: center;
-    border-top: 1px solid #eee;
-  }
-
-  .video-container iframe {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 9; /* Maintain responsive scaling */
-    border: none;
-  }
-
-  .custom-progress-bar {
-    width: 70%; /* Make the progress bar same width as the button */
-    margin-bottom: 10px;
-    height: 10px;
-    border-radius: 8px;
-
-
-  }
-
-  .custom-button {
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 0.9em;
-    font-weight: bold;
-    margin-bottom: 20px;
-    width: 70%; /*  Make the button same width as the progress bar */
-  }
-
-  .navigation-buttons {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;              /* Buttons take up full width */
-    max-width: 500px;          /* Limit the maximum width */
-    margin-top: 20px;         /* Add some space above the buttons */
-    gap: 10px;                 /* Add padding between the buttons */
-  }
-
-  .navigation-buttons button {
-    flex: 1;                  /* Make the buttons stretch to fill the available space */
-    padding: 10px 20px;         /* Padding for the buttons */
-    border-radius: 8px;       /* Rounded corners */
-    font-size: 1em;           /* Adjust font size */
-    cursor: pointer;          /* Change cursor to pointer on hover */
-  }
-
+.navigation-buttons button {
+  flex: 1;
+  height: 48px;
+  font-size: 1rem;
+  text-transform: none;
+  border-radius: 8px;
 }

@@ -36,7 +36,7 @@ export class GasComponent {
     },
     {
       title: 'What can I buy with ETH?',
-      text: '',
+      text: 'Here is a video that will help.',
       video: `<iframe width="390" height="330" src="https://www.youtube.com/embed/pxaSOHDmhTM"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
       progress: 100
     },

@@ -1,0 +1,84 @@
+.wallet-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 24px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  border-radius: 16px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.privy-logo img {
+  width: 100px;
+  margin-bottom: 24px;
+}
+
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.login-button img {
+  width: 24px;
+}
+
+.login-button:hover {
+  background-color: #efefef;
+}
+
+.passkey-link {
+  display: block;
+  margin-top: 12px;
+  color: #5c6bc0;
+  text-decoration: none;
+}
+
+.protected-by {
+  margin-top: 24px;
+  font-size: 12px;
+  color: #888;
+}
+
+.spinner {
+  margin: 0 auto 24px;
+  width: 64px;
+  height: 64px;
+  border: 6px solid #ddd;
+  border-top-color: #222;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.success-icon {
+  font-size: 48px;
+  color: #4caf50;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

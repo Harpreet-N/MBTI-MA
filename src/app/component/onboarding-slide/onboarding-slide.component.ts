@@ -4,6 +4,7 @@ import {MatButton} from '@angular/material/button';
 import {MatProgressBar} from '@angular/material/progress-bar';
 import {QuizComponent} from '../quiz/quiz.component';
 import {VideoComponent} from '../video/video.component';
+import {WalletCreationComponent} from '../wallet-creation/wallet-creation.component';
 
 export interface OnboardingStep {
   title: string;
@@ -21,7 +22,8 @@ export interface OnboardingStep {
     MatButton,
     MatProgressBar,
     QuizComponent,
-    VideoComponent
+    VideoComponent,
+    WalletCreationComponent
   ],
   templateUrl: './onboarding-slide.component.html',
   standalone: true,
@@ -37,7 +39,7 @@ export class OnboardingSlideComponent {
 
   currentIndex = 0;
   showQuiz = false; // initially false so onboarding is shown first
-
+  showWalletCreation = false;
 
 
   onboarding: OnboardingStep[] = [
@@ -66,8 +68,8 @@ export class OnboardingSlideComponent {
       progress: 100
     },
     {
-      title: ' Wallet',
-      text: 'PRIVYYYY',
+      title: 'PRIVY',
+      text: null,
       video: null,
       progress: 100
     },
@@ -79,7 +81,7 @@ export class OnboardingSlideComponent {
     },
     {
       title: 'The key principle of Echo is MBTI',
-      text: null,
+      text: 'This Video will give you an overview about MBTI',
       video: `<iframe width="390" height="330" src="https://www.youtube.com/embed/RoQi9Mvqip0?si=70kTet-0bNqEBP2Q" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
       progress: null
     },
@@ -93,11 +95,20 @@ export class OnboardingSlideComponent {
   ];
 
   next() {
-    // If we are at the last onboarding slide, start quiz
-    if (this.currentIndex === this.onboarding.length - 1) {
-      this.startQuiz();
-    } else {
+    console.log('Moving to next step:', this.currentIndex);
+
+    // At PRIVY step (index 4), show wallet-creation instead of moving forward
+    if (this.onboarding[this.currentIndex].title === 'Creating Your Wallet') {
       this.currentIndex++;
+      this.showWalletCreation = true;
+      return; // Stop the default next action
+    }
+
+    // Proceed to next step normally
+    if (this.currentIndex < this.onboarding.length - 1) {
+      this.currentIndex++;
+    } else {
+      this.showQuiz = true;
     }
   }
 
@@ -107,7 +118,10 @@ export class OnboardingSlideComponent {
     }
   }
 
-  startQuiz() {
-    this.showQuiz = true;
+  // Callback from <app-wallet-creation>
+  onWalletCreated() {
+    this.showWalletCreation = false;
+    this.next(); // Continue to the next step after wallet creation
   }
+
 }

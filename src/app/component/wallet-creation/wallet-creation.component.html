@@ -1,0 +1,53 @@
+<div class="wallet-container">
+
+  <!-- Step 1: Login / Signup -->
+  <div *ngIf="step === 'login'" class="login-screen">
+    <h2>Log in or sign up</h2>
+
+    <div class="privy-logo">
+      <img src="assets/icon/privy-logo.png" alt="Privy logo"/>
+    </div>
+
+    <button class="login-button twitter" (click)="startCreationProcess()">
+      <img src="assets/icon/twitter.svg" alt="Twitter"/> Twitter
+    </button>
+
+    <button class="login-button email" (click)="startCreationProcess()">
+      <img src="assets/icon/mail.svg" alt="Email"/> your&#64;email.com
+    </button>
+
+    <button class="login-button google" (click)="startCreationProcess()">
+      <img src="assets/icon/google.svg" alt="Google"/> Google
+    </button>
+
+    <button class="login-button apple" (click)="startCreationProcess()">
+      <img src="assets/icon/apple.svg" alt="Apple"/> Apple
+    </button>
+
+    <button class="login-button wallet" (click)="startCreationProcess()">
+      <img src="assets/icon/wallet.svg" alt="Wallet"/> Continue with a wallet
+    </button>
+
+    <a class="passkey-link" href="#">I have a passkey</a>
+
+    <div class="protected-by">Protected by <strong>privy</strong></div>
+  </div>
+
+  <!-- Step 2: Loading Spinner -->
+  <div *ngIf="step === 'loading'" class="loading-screen">
+    <div class="spinner"></div>
+    <div class="protected-by">Protected by <strong>privy</strong></div>
+  </div>
+
+  <!-- Step 3: Success Message -->
+  <div *ngIf="step === 'success'" class="success-screen">
+    <div class="success">&#10004;</div>
+    <h2>Success!</h2>
+    <p>You've successfully created an account and your wallet is mapped with your login.</p>
+    <div class="protected-by">Protected by <strong>privy</strong></div>
+    <button style="margin-top:2rem" mat-flat-button (click)="completeWallet()">
+      Continue
+    </button>
+  </div>
+
+</div>

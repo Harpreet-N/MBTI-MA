@@ -1,31 +1,29 @@
-<!-- Onboarding Slides -->
 <div class="slide-container">
   <div *ngIf="!buyGasComponet">
     <h2>{{ onboarding[currentIndex].title }}</h2>
     <p>{{ onboarding[currentIndex].text }}</p>
 
     <div *ngIf="onboarding[currentIndex].video" class="video-container">
-      <h3>Video</h3>
       <app-video [videoIframeString]="onboarding[currentIndex]?.video || ''"></app-video>
     </div>
 
+    <!-- Progress Bar above Buttons -->
     <mat-progress-bar *ngIf="onboarding[currentIndex].progress != null"
                       class="custom-progress-bar"
                       mode="determinate"
                       [value]="onboarding[currentIndex].progress">
     </mat-progress-bar>
 
+    <!-- Navigation Buttons -->
     <div class="navigation-buttons">
       <button mat-stroked-button (click)="prev()" [disabled]="currentIndex === 0">
         Previous
       </button>
-
-      <button mat-flat-button (click)="next()">
+      <button mat-flat-button color="primary" (click)="next()">
         {{ currentIndex === onboarding.length - 1 ? 'Buy Gas' : 'Next' }}
       </button>
     </div>
   </div>
+
   <app-buy-crypto *ngIf="buyGasComponet"></app-buy-crypto>
 </div>
-
-

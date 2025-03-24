@@ -1,10 +1,9 @@
 <!-- Onboarding Slides -->
-<div *ngIf="!showQuiz" class="slide-container">
+<div *ngIf="!showQuiz && !showWalletCreation" class="slide-container">
   <h2>{{ onboarding[currentIndex].title }}</h2>
   <p>{{ onboarding[currentIndex].text }}</p>
 
   <div *ngIf="onboarding[currentIndex].video" class="video-container">
-    <h3>Video</h3>
     <app-video [videoIframeString]="onboarding[currentIndex].video || ''"></app-video>
   </div>
 
@@ -24,6 +23,9 @@
   </button>
   </div>
 </div>
+
+<app-wallet-creation *ngIf="showWalletCreation" (walletCreated)="onWalletCreated()"></app-wallet-creation>
+
 
 <!-- Quiz Component -->
 <app-quiz *ngIf="showQuiz"></app-quiz>
