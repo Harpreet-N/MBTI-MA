@@ -1,0 +1,242 @@
+.profile-container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Back button and joined info */
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.settings-button {
+  margin-left: auto;
+}
+
+
+.joined-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.back-button {
+  margin-right: 12px;
+}
+
+/* Avatar + Description + MBTI Info */
+
+.avatar-section {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Less space between avatar and text */
+  margin: 8px 0;
+}
+
+.avatar-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-right: 16px;
+}
+
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  margin-right: 16px;
+}
+
+/* Avatar Text Container */
+.avatar-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* Less space between text elements */
+}
+
+
+/* Headline (name and MBTI) */
+.avatar-text h3 {
+  margin: 0;
+  font-size: 1rem; /* Smaller font size */
+  font-weight: 600;
+}
+
+/* Description */
+.avatar-text p {
+  margin: 0;
+  font-size: 0.9rem; /* Slightly smaller */
+  line-height: 1.2; /* Tighter line height */
+}
+
+/* MBTI Info Section */
+.mbti-info {
+  margin-top: 4px; /* Less space above MBTI info */
+}
+
+/* MBTI small text */
+.mbti-small {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.mbti-info {
+  margin-top: 8px;
+}
+
+.mbti-small {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+/* Stats Section */
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.stat {
+  flex: 1;
+  text-align: center;
+  padding: 12px 0;
+  border-right: 1px solid #ddd;
+}
+
+.stat:last-child {
+  border-right: none;
+}
+
+.stat h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.stat p {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+/* Buttons Container */
+.profile-buttons {
+  display: flex; /* Align buttons in a row */
+  flex-direction: row; /* Horizontal layout */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Align vertically */
+  gap: 12px; /* Space between buttons */
+  margin-bottom: 24px;
+  width: 100%; /* Full width */
+}
+
+/* Individual Buttons */
+.profile-buttons button {
+  flex: 1; /* Make buttons take equal space */
+  max-width: 180px; /* Optional: Limit max width */
+  height: 48px;
+  font-size: 1rem;
+  text-transform: none; /* Prevent uppercase text */
+  border-radius: 8px;
+}
+
+mat-tab-group {
+  margin-top: 16px;
+}
+
+/* NFT & Events */
+.nft-container, .event-container {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+  border: 1px solid #eee;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.nft-image, .event-thumb {
+  width: 120px;
+  height: 120px;
+  border-radius: 12px;
+  margin-right: 12px;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.event-details {
+  flex-grow: 1;
+}
+
+.event-over {
+  background-color: #b8b3b3;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+/* Replies & Likes */
+.replies-section {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.reply-card {
+  display: flex;
+  padding: 16px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.reply-card:last-child {
+  border-bottom: none;
+}
+
+.reply-content {
+  flex: 1;
+}
+
+.reply-header {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #555;
+}
+
+.reply-header .name {
+  font-weight: bold;
+  margin-right: 6px;
+}
+
+.reply-header .username,
+.reply-header .date {
+  color: #888;
+}
+
+.reply-header .dot {
+  margin: 0 6px;
+}
+
+.reply-text {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.reply-actions {
+  display: flex;
+  justify-content: space-between;
+  max-width: 250px;
+}
+
+.reply-actions button {
+  color: #888;
+}

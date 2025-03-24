@@ -245,6 +245,12 @@ export class MbtiResultComponent implements OnChanges {
       this.character = 'Unknown Type';
       this.description = 'No description available for this type.';
     }
+
+    // ✅ Save to sessionStorage
+    sessionStorage.setItem('mbtiType', this.mbtiType);
+    sessionStorage.setItem('mbtiCharacter', this.character);
+    sessionStorage.setItem('mbtiDescription', this.description);
+    sessionStorage.setItem('mbtiImage', this.mbtiImage);
   }
 
   getCompatibility(): void {
@@ -255,13 +261,17 @@ export class MbtiResultComponent implements OnChanges {
 
     if (matchInfo) {
       this.compatibilityDescription = `${matchInfo.character}: ${matchInfo.description}`;
-
       // 🔥 Set the image path for the compatible type
       this.compatibilityImage = `assets/images/${match.toLowerCase()}.png`;
     } else {
       this.compatibilityDescription = 'No compatibility description available.';
       this.compatibilityImage = ''; // Or a fallback/default image
     }
+
+    sessionStorage.setItem('compatibleType', this.compatibleType);
+    sessionStorage.setItem('compatibilityDescription', this.compatibilityDescription);
+    sessionStorage.setItem('compatibilityImage', this.compatibilityImage);
+
   }
 
 

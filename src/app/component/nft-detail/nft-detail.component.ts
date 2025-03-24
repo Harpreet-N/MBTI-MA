@@ -72,8 +72,14 @@ export class NftDetailComponent implements OnInit {
       data: { nft: this.nft }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 'success') {
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // NFT purchased! Now add it to the user's NFT list in sessionStorage
+        let nftList = JSON.parse(sessionStorage.getItem('nftList') || '[]');
+        nftList.push(result);
+        sessionStorage.setItem('nftList', JSON.stringify(nftList));
+
+        // Optional: navigate to profile
         this.router.navigate(['/profile']);
       }
     });

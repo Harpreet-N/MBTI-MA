@@ -1,0 +1,137 @@
+<div class="profile-container">
+  <!-- Header Row: Back button & Joined Info -->
+  <div class="header-row">
+    <button mat-icon-button (click)="router.navigate(['/marketplace'])" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2 class="joined-title"><strong>{{ user.username }}</strong> - {{ user.date }}</h2>
+
+    <button mat-icon-button class="settings-button" (click)="router.navigate(['/profile/edit'])">
+      <mat-icon>settings</mat-icon>
+    </button>
+
+  </div>
+
+  <!-- Avatar & Name Section -->
+  <div class="avatar-section">
+    <img [src]="user.avatar" alt="Avatar" class="avatar-image"/>
+
+    <div class="avatar-text">
+      <h3>{{ user.name }} - {{ user.mbtiType }}</h3>
+      <p>{{ user.description }}</p>
+
+      <!-- MBTI Type & Compatibility -->
+      <div class="mbti-info">
+        <p class="mbti-small">MBTI TYPE: <strong>{{ user.mbtiType }}</strong></p>
+        <p class="mbti-small">Compatibility: <strong>{{ user.compatibility }}</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Section with Border -->
+  <div class="stats-container">
+    <div class="stat">
+      <h3>{{ user.eventsParticipated }}</h3>
+      <p>Events</p>
+    </div>
+    <div class="stat">
+      <h3>{{ user.followers }}</h3>
+      <p>Followers</p>
+    </div>
+    <div class="stat">
+      <h3>{{ user.following }}</h3>
+      <p>Following</p>
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="profile-buttons">
+    <button mat-stroked-button color="primary" (click)="router.navigate(['/marketplace'])">Marketplace</button>
+    <button mat-flat-button color="accent" (click)="router.navigate(['/event'])">Join Event</button>
+  </div>
+
+  <!-- Tabs -->
+  <mat-tab-group (selectedIndexChange)="onTabChange($event)">
+    <!-- NFT Tab -->
+    <mat-tab label="NFT">
+      <div class="nft-container" *ngFor="let nft of nftList">
+        <img [src]="nft.imageUrl" alt="{{ nft.title }}" class="nft-image"/>
+        <div>
+          <h4>{{ nft.title }}</h4>
+          <div class="tags">
+            <span *ngFor="let tag of nft.tags">{{ tag }}</span>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+
+    <!-- Events Tab -->
+    <mat-tab label="Events">
+      <div class="event-container" *ngFor="let event of upcomingEvents">
+        <img [src]="event.image" alt="{{ event.title }}" class="event-thumb"/>
+        <div class="event-details">
+          <h4>{{ event.title }}</h4>
+          <p>Type: {{ event.type.join(', ') }}</p>
+          <p>Date: {{ event.date }} | {{ event.location }}</p>
+        </div>
+
+        <div *ngIf="event.status === 'active'">
+          <button mat-icon-button color="warn" (click)="removeEvent(event)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+        <div *ngIf="event.status === 'over'" class="event-over">Event is over</div>
+      </div>
+    </mat-tab>
+
+    <!-- Replies Tab -->
+    <mat-tab label="Replies">
+      <div *ngFor="let reply of replies" class="reply-card">
+        <img class="avatar" [src]="reply.avatar" alt="User Avatar"/>
+        <div class="reply-content">
+          <div class="reply-header">
+            <span class="name">{{ reply.name }}</span>
+            <span class="username">{{ reply.username }}</span>
+            <span class="dot">·</span>
+            <span class="date">{{ reply.date }}</span>
+          </div>
+          <p class="reply-text">{{ reply.text }}</p>
+          <div class="reply-actions">
+            <button mat-icon-button>
+              <mat-icon>chat_bubble_outline</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon>repeat</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon>favorite_border</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon>ios_share</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+
+    <!-- Likes Tab -->
+    <mat-tab label="Likes">
+      <div *ngFor="let like of likes" class="reply-card">
+        <img class="avatar" [src]="like.avatar" alt="User Avatar"/>
+        <div class="reply-content">
+          <div class="reply-header">
+            <span class="name">{{ like.name }}</span>
+            <span class="username">{{ like.username }}</span>
+            <span class="dot">·</span>
+            <span class="date">{{ like.date }}</span>
+          </div>
+          <p class="reply-text">{{ like.text }}</p>
+          <div class="reply-actions">
+            <mat-icon color="warn">favorite</mat-icon>
+            <span>{{ like.likes }}</span>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

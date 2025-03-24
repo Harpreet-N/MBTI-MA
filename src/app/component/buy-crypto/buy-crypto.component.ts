@@ -9,7 +9,6 @@ import {Router} from '@angular/router';
 import {DecimalPipe, NgIf} from '@angular/common';
 
 
-
 @Component({
   selector: 'success-dialog',
   standalone: true,
@@ -92,14 +91,8 @@ export class SuccessDialogComponent {
 
 
   confirmBuy() {
-    // Logic after confirming the buy
-    this.dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.router.navigate(['/profile']); // Navigate to profile after buy
-      } else {
-        this.dialogRef.close(true);
-      }
-    });
+    this.dialogRef.close(true);
+    this.router.navigate(['/profile']); // Navigate to profile after buy
 
   }
 

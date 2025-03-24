@@ -1,0 +1,38 @@
+<div class="edit-profile-container">
+
+  <!-- Back Button -->
+  <button mat-icon-button (click)="cancel()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <h2>Edit Profile</h2>
+
+  <!-- Avatar Preview -->
+  <div class="avatar-preview">
+    <img [src]="previewAvatar" alt="Avatar Preview">
+  </div>
+
+  <!-- Upload Avatar -->
+  <input type="file" accept="image/*" (change)="onAvatarChange($event)"/>
+
+  <!-- Form Inputs -->
+  <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" required/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea matInput rows="3" formControlName="description" required></textarea>
+    </mat-form-field>
+
+    <!-- Buttons -->
+    <div class="form-buttons">
+      <button mat-stroked-button color="warn" type="button" (click)="cancel()">Cancel</button>
+      <button mat-flat-button color="primary" type="submit">Save</button>
+    </div>
+  </form>
+
+</div>

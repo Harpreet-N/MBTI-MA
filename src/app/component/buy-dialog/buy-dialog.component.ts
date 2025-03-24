@@ -28,7 +28,6 @@ export class BuyDialogComponent {
   }
 
   confirm() {
-    this.dialogRef.close(true); // Close dialog and return true
-    this.router.navigate(['/profile']); // Redirect to profile after buying
+    this.dialogRef.close(this.data.nft);  // Passing the NFT data back to the parent component
   }
 }
