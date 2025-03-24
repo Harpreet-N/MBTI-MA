@@ -12,6 +12,5 @@ export interface EventModel {
   joined: number;
   description: string;
   avatar: string;
-
 }
 

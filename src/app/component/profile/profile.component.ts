@@ -7,6 +7,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {NFT} from '../../model/nft.model';
 import {ConfirmationDialogComponent} from './confirmationDialogComponent';
 import {MatDialog} from '@angular/material/dialog';
+import {EventProfile} from '../../model/event.profile.model';
 
 @Component({
   selector: 'app-profile',
@@ -26,13 +27,13 @@ export class ProfileComponent implements OnInit {
   nftList: NFT[] = []; // default empty
 
   user = {
-    username: 'Amy',
-    date: 'Joined January 2024',
-    name: 'Amy',
-    mbtiType: 'INTJ',
-    compatibility: 'ENFP',
-    description: 'Likes to sing and play Volleyball',
-    avatar: 'assets/avatar/amyelsner.png',
+    username: 'Testing User',
+    date: '',
+    name: 'Test User',
+    mbtiType: '',
+    compatibility: '',
+    description: 'I am a default User but tell me what are your interest?',
+    avatar: 'assets/avatar/default.jpg',
     eventsParticipated: 54,
     followers: 834,
     following: 162
@@ -41,24 +42,7 @@ export class ProfileComponent implements OnInit {
   // NFTs the user bought
 
   // Events the user will join
-  upcomingEvents = [
-    {
-      title: 'Silent Wave Concert',
-      type: ['External', 'Thinking'],
-      date: '2024-04-15 18:00',
-      location: 'Virtual Concert Hall',
-      status: 'active', // or 'over'
-      image: 'assets/event/concert.jpg',
-    },
-    {
-      title: 'Colorful Music Festival',
-      type: ['Internal', 'Sensing'],
-      date: '2024-05-05 20:00',
-      location: 'Berlin Open Air Stage',
-      status: 'over',
-      image: 'assets/event/music.jpg',
-    }
-  ];
+  upcomingEvents: EventProfile[] = [];
 
   replies = [
     {
@@ -113,14 +97,14 @@ export class ProfileComponent implements OnInit {
 
 
   ngOnInit(): void {
-    const savedProfile = JSON.parse(sessionStorage.getItem('userProfile') || '{}');
+    // Fetch MBTI and Compatibility from session storage
+    const mbtiType = sessionStorage.getItem('mbtiType');
+    const compatibleType = sessionStorage.getItem('compatibleType');
 
-    this.user = {
-      ...this.user,    // keep defaults if no data
-      name: savedProfile.name || 'Amy',
-      description: savedProfile.description || 'Likes to sing and play Volleyball',
-      avatar: savedProfile.avatar || 'assets/avatar/amyelsner.png'
-    };
+    this.user.mbtiType = mbtiType ?? 'Unknown';
+    this.user.compatibility = compatibleType ?? 'Unknown';
+    this.getDate();
+
 
     const savedNfts = sessionStorage.getItem('nftList');
 
@@ -128,6 +112,16 @@ export class ProfileComponent implements OnInit {
 
   }
 
+
+  private getDate() {
+    // Generate current date in DD.MM.YY format
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months start at 0!
+    const yy = String(today.getFullYear()).slice(-2);
+
+    this.user.date = `${dd}.${mm}.${yy}`;
+  }
 
   removeEvent(event: any): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {

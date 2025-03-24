@@ -52,36 +52,58 @@
 
   <!-- Tabs -->
   <mat-tab-group (selectedIndexChange)="onTabChange($event)">
+
     <!-- NFT Tab -->
     <mat-tab label="NFT">
-      <div class="nft-container" *ngFor="let nft of nftList">
-        <img [src]="nft.imageUrl" alt="{{ nft.title }}" class="nft-image"/>
-        <div>
-          <h4>{{ nft.title }}</h4>
-          <div class="tags">
-            <span *ngFor="let tag of nft.tags">{{ tag }}</span>
+      <ng-container *ngIf="nftList.length > 0; else noNfts">
+        <div class="nft-container" *ngFor="let nft of nftList">
+          <img [src]="nft.imageUrl" alt="{{ nft.title }}" class="nft-image"/>
+          <div>
+            <h4>{{ nft.title }}</h4>
+            <div class="tags">
+              <span *ngFor="let tag of nft.tags">{{ tag }}</span>
+            </div>
           </div>
         </div>
-      </div>
+      </ng-container>
+
+      <!-- Message when no NFTs -->
+      <ng-template #noNfts>
+        <div class="empty-state">
+          <p>You do not have any NFTs yet.</p>
+          <p><strong>Buy some NFT!</strong></p>
+        </div>
+      </ng-template>
     </mat-tab>
 
     <!-- Events Tab -->
     <mat-tab label="Events">
-      <div class="event-container" *ngFor="let event of upcomingEvents">
-        <img [src]="event.image" alt="{{ event.title }}" class="event-thumb"/>
-        <div class="event-details">
-          <h4>{{ event.title }}</h4>
-          <p>Type: {{ event.type.join(', ') }}</p>
-          <p>Date: {{ event.date }} | {{ event.location }}</p>
-        </div>
+      <ng-container *ngIf="upcomingEvents.length > 0; else noEvents">
+        <div class="event-container" *ngFor="let event of upcomingEvents">
+          <img [src]="event.image" alt="{{ event.title }}" class="event-thumb"/>
+          <div class="event-details">
+            <h4>{{ event.title }}</h4>
+            <p>Type: {{ event.type.join(', ') }}</p>
+            <p>Date: {{ event.date }} | {{ event.location }}</p>
+          </div>
 
-        <div *ngIf="event.status === 'active'">
-          <button mat-icon-button color="warn" (click)="removeEvent(event)">
-            <mat-icon>close</mat-icon>
-          </button>
+          <div *ngIf="event.status === 'active'">
+            <button mat-icon-button color="warn" (click)="removeEvent(event)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+
+          <div *ngIf="event.status === 'over'" class="event-over">Event is over</div>
         </div>
-        <div *ngIf="event.status === 'over'" class="event-over">Event is over</div>
-      </div>
+      </ng-container>
+
+      <!-- Message when no Events -->
+      <ng-template #noEvents>
+        <div class="empty-state">
+          <p>You do not have any upcoming events.</p>
+          <p><strong>Join some events!</strong></p>
+        </div>
+      </ng-template>
     </mat-tab>
 
     <!-- Replies Tab -->
@@ -133,5 +155,6 @@
         </div>
       </div>
     </mat-tab>
+
   </mat-tab-group>
 </div>
