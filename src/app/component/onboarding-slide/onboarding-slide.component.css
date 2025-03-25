@@ -10,7 +10,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 100vh;
+  height: 90vh;
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
@@ -27,7 +27,6 @@ html, body {
   p {
     font-size: 1em;
     text-align: center;
-    margin-bottom: auto;
     padding: 0 10px;
     line-height: 1.4;
     color: #555;
@@ -49,8 +48,7 @@ html, body {
 
 
   .custom-progress-bar {
-    width: 70%; /* Make the progress bar same width as the button */
-    margin-bottom: 10px;
+    width: 100%;
     height: 10px;
     border-radius: 8px;
   }
@@ -65,23 +63,40 @@ html, body {
     width: 70%; /*  Make the button same width as the progress bar */
   }
 
+  .navigation-wrapper {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+
   .navigation-buttons {
     display: flex;
     justify-content: space-between;
-    width: 100%;              /* Buttons take up full width */
-    max-width: 500px;          /* Limit the maximum width */
-    margin-top: 20px;         /* Add some space above the buttons */
-    gap: 10px;                 /* Add padding between the buttons */
+    width: 100%;
+    gap: 10px;
   }
 
   .navigation-buttons button {
-    flex: 1;                  /* Make the buttons stretch to fill the available space */
-    padding: 10px 20px;         /* Padding for the buttons */
-    border-radius: 8px;       /* Rounded corners */
-    font-size: 1em;           /* Adjust font size */
-    cursor: pointer;          /* Change cursor to pointer on hover */
+    flex: 1;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
   }
 
 }
 
 
+.onboarding-image {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}

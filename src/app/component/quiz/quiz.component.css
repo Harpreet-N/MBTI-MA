@@ -10,7 +10,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 100vh;
+  height: 90vh;
   padding: 20px;
   box-sizing: border-box;  /* Ensure padding is included in the element's total width and height */
 }

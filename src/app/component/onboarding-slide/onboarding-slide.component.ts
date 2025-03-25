@@ -11,6 +11,7 @@ export interface OnboardingStep {
   text: string | null;
   video: string | null;
   progress: number | null;
+  image?: string | null;
 }
 
 
@@ -47,7 +48,8 @@ export class OnboardingSlideComponent {
       title: 'Welcome to Echo',
       text: 'Echo is a decentralized social platform that helps you build meaningful connections using Web3 technology.',
       video: null,
-      progress: 25
+      progress: 25,
+      image: 'assets/onboarding/echo2.jpg',
     },
     {
       title: 'Discover Web3',
@@ -65,7 +67,8 @@ export class OnboardingSlideComponent {
       title: 'Creating Your Wallet',
       text: 'Now it’s time to create your wallet! Your Web3 wallet will allow you to interact with Echo, manage your digital identity, and securely store your assets. Follow the steps to generate your wallet.',
       video: null,
-      progress: 100
+      progress: 100,
+      image: 'assets/onboarding/wallet.jpg',
     },
     {
       title: 'PRIVY',
@@ -77,7 +80,8 @@ export class OnboardingSlideComponent {
       title: 'Your Wallet',
       text: 'For security purposes, your wallet is also saved in your iCloud or Google Drive. The reason for this is to ensure that you can always restore access to your wallet if your device is lost, damaged, or stolen. Having an encrypted backup in cloud storage provides an additional layer of safety, allowing you to securely recover your wallet and digital assets even if your original device becomes inaccessible.',
       video: null,
-      progress: null
+      progress: null,
+      image: 'assets/images/panda.jpg',
     },
     {
       title: 'The key principle of Echo is MBTI',
@@ -89,7 +93,8 @@ export class OnboardingSlideComponent {
       title: 'Echo',
       text: 'Echo integrates the Myers-Briggs Type Indicator (MBTI) personality quiz as a key feature to enhance social interactions. By understanding their MBTI personality types, users can discover compatible people, join events, and participate in communities that align with their personality and interests. This personalized approach helps users build deeper, more fulfilling social connections based on genuine compatibility.',
       video: null,
-      progress: null
+      progress: null,
+      image: 'assets/images/panda.jpg',
     },
     // Add more entries as needed
   ];

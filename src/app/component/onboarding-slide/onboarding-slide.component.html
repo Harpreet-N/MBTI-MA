@@ -1,26 +1,36 @@
 <!-- Onboarding Slides -->
 <div *ngIf="!showQuiz && !showWalletCreation" class="slide-container">
   <h2>{{ onboarding[currentIndex].title }}</h2>
-  <p>{{ onboarding[currentIndex].text }}</p>
 
-  <div *ngIf="onboarding[currentIndex].video" class="video-container">
-    <app-video [videoIframeString]="onboarding[currentIndex].video || ''"></app-video>
-  </div>
+  <!-- If there is a video -->
+  <ng-container *ngIf="onboarding[currentIndex].video; else showImage">
+    <div class="video-container">
+      <app-video [videoIframeString]="onboarding[currentIndex].video || ''"></app-video>
+    </div>
+    <p>{{ onboarding[currentIndex].text }}</p>
+  </ng-container>
 
-  <mat-progress-bar *ngIf="onboarding[currentIndex].progress != null"
-                    class="custom-progress-bar"
-                    mode="determinate"
-                    [value]="onboarding[currentIndex].progress">
-  </mat-progress-bar>
+  <!-- If there is NO video -->
+  <ng-template #showImage>
+    <img [src]="onboarding[currentIndex].image" alt="Onboarding Image" class="onboarding-image"/>
+    <p>{{ onboarding[currentIndex].text }}</p>
+  </ng-template>
 
-  <div class="navigation-buttons">
-  <button mat-stroked-button  (click)="prev()" [disabled]="currentIndex === 0">
-    Previous
-  </button>
+  <div class="navigation-wrapper">
+    <mat-progress-bar *ngIf="onboarding[currentIndex].progress != null"
+                      class="custom-progress-bar"
+                      mode="determinate"
+                      [value]="onboarding[currentIndex].progress">
+    </mat-progress-bar>
 
-  <button mat-flat-button (click)="next()">
-    {{ currentIndex === onboarding.length - 1 ? 'Start Quiz' : 'Next' }}
-  </button>
+    <div class="navigation-buttons">
+      <button mat-stroked-button (click)="prev()" [disabled]="currentIndex === 0">
+        Previous
+      </button>
+      <button mat-flat-button (click)="next()">
+        {{ currentIndex === onboarding.length - 1 ? 'Start Quiz' : 'Next' }}
+      </button>
+    </div>
   </div>
 </div>
 
@@ -29,4 +39,3 @@
 
 <!-- Quiz Component -->
 <app-quiz *ngIf="showQuiz"></app-quiz>
-

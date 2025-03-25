@@ -1,5 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
+@use '@angular/material' as mat;
+
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+:root {
+  @include mat.button-overrides((
+    filled-container-color: black,
+    filled-label-text-color: white,
+  ));
+}
+
+
 /* Base styles */
 html, body {
   height: 100%;
@@ -9,10 +20,14 @@ html, body {
   background-color: #f0f0f0; /* Subtle background to emphasize the app */
 }
 
+h1, h2, h3, h4 {
+  font-family: Outfit, serif;
+}
+
 /* Mobile App Container */
 .app-container {
   width: 390px; /* Mobile width (you can adjust to 360px if needed) */
-  min-height: 100vh; /* Full viewport height */
+  min-height: 90vh; /* Full viewport height */
   margin: 0 auto; /* Center horizontally */
   background-color: #ffffff; /* App background */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional shadow for 'device' look */
@@ -33,3 +48,5 @@ html, body {
     margin-top: 32px; /* Optional margin from the top */
   }
 }
+
+
