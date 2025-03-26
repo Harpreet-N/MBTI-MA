@@ -1,6 +1,5 @@
 .wallet-container {
   width: 100%;
-  max-width: 400px;
   margin: 0 auto;
   padding: 24px;
   text-align: center;
@@ -8,7 +7,7 @@
   border-radius: 16px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
   background: #fff;
-  height: 100vh;
+  height: 84.5vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

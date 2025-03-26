@@ -1,13 +1,14 @@
-<div class="slide-container">
-  <div *ngIf="!buyGasComponet">
-    <h2>{{ onboarding[currentIndex].title }}</h2>
-    <p>{{ onboarding[currentIndex].text }}</p>
+<div class="slide-container" *ngIf="!buyGasComponet">
+  <h2>{{ onboarding[currentIndex].title }}</h2>
 
-    <div *ngIf="onboarding[currentIndex].video" class="video-container">
-      <app-video [videoIframeString]="onboarding[currentIndex]?.video || ''"></app-video>
-    </div>
+  <div *ngIf="onboarding[currentIndex].video" class="video-container">
+    <app-video [videoIframeString]="onboarding[currentIndex]?.video || ''"></app-video>
+  </div>
+  <p>{{ onboarding[currentIndex].text }}</p>
 
-    <!-- Progress Bar above Buttons -->
+
+  <!-- Progress Bar above Buttons -->
+  <div class="navigation-wrapper">
     <mat-progress-bar *ngIf="onboarding[currentIndex].progress != null"
                       class="custom-progress-bar"
                       mode="determinate"
@@ -24,6 +25,6 @@
       </button>
     </div>
   </div>
-
-  <app-buy-crypto *ngIf="buyGasComponet"></app-buy-crypto>
 </div>
+
+<app-buy-crypto *ngIf="buyGasComponet"></app-buy-crypto>

@@ -5,6 +5,7 @@ import {MatProgressBar} from '@angular/material/progress-bar';
 import {QuizComponent} from '../quiz/quiz.component';
 import {VideoComponent} from '../video/video.component';
 import {WalletCreationComponent} from '../wallet-creation/wallet-creation.component';
+import {Router} from '@angular/router';
 
 export interface OnboardingStep {
   title: string;
@@ -81,7 +82,7 @@ export class OnboardingSlideComponent {
       text: 'For security purposes, your wallet is also saved in your iCloud or Google Drive. The reason for this is to ensure that you can always restore access to your wallet if your device is lost, damaged, or stolen. Having an encrypted backup in cloud storage provides an additional layer of safety, allowing you to securely recover your wallet and digital assets even if your original device becomes inaccessible.',
       video: null,
       progress: null,
-      image: 'assets/images/panda.jpg',
+      image: 'assets/onboarding/wallet-bitcoin.jpg',
     },
     {
       title: 'The key principle of Echo is MBTI',
@@ -94,10 +95,13 @@ export class OnboardingSlideComponent {
       text: 'Echo integrates the Myers-Briggs Type Indicator (MBTI) personality quiz as a key feature to enhance social interactions. By understanding their MBTI personality types, users can discover compatible people, join events, and participate in communities that align with their personality and interests. This personalized approach helps users build deeper, more fulfilling social connections based on genuine compatibility.',
       video: null,
       progress: null,
-      image: 'assets/images/panda.jpg',
+      image: 'assets/onboarding/mbti.jpg',
     },
     // Add more entries as needed
   ];
+
+  constructor(private router: Router) {
+  }
 
   next() {
     console.log('Moving to next step:', this.currentIndex);
@@ -113,6 +117,7 @@ export class OnboardingSlideComponent {
     if (this.currentIndex < this.onboarding.length - 1) {
       this.currentIndex++;
     } else {
+      this.router.navigate(['/gas']);
       this.showQuiz = true;
     }
   }
