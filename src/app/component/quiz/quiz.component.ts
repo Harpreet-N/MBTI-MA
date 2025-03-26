@@ -17,7 +17,7 @@ import {MbtiResultComponent} from '../mbti-result/mbti-result.component';
 })
 export class QuizComponent {
 
-  developMode: boolean = true;
+  developMode: boolean = false;
   // Array of quiz questions
   quiz = [
     {

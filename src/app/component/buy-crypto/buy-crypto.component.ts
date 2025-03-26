@@ -92,7 +92,7 @@ export class SuccessDialogComponent {
 
   confirmBuy() {
     this.dialogRef.close(true);
-    this.router.navigate(['/profile']); // Navigate to profile after buy
+    this.router.navigate(['/']); // Navigate to onboarding after buy
 
   }
 
@@ -119,7 +119,7 @@ export class SuccessDialogComponent {
 export class BuyCryptoComponent {
   btcEquivalent: string = '0';
   availableBalance: number = 0;
-  ethPrice: number = 2019.29;
+  ethPrice: number = 1883.92;
   amount: number = 0;
   ethAmount: number = 0;
   walletId: string = '1234-5678-9012';  // Replace with your real wallet ID logic

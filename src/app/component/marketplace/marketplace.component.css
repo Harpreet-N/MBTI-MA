@@ -21,7 +21,9 @@
 }
 
 .nft-card img {
-  width: 100%;
+  width: 90%;
+  margin-top: 5px;
+  border-radius: 15px;
   height: auto;
 }
 

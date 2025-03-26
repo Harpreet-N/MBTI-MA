@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgIf} from '@angular/common';
 import {MatButton} from '@angular/material/button';
 import {MatProgressBar} from '@angular/material/progress-bar';
@@ -31,7 +31,7 @@ export interface OnboardingStep {
   standalone: true,
   styleUrl: './onboarding-slide.component.css'
 })
-export class OnboardingSlideComponent {
+export class OnboardingSlideComponent implements OnInit {
   @Input() title: string = '';
   @Input() text?: string = '';
   @Input() video?: string | undefined;
@@ -103,6 +103,20 @@ export class OnboardingSlideComponent {
   constructor(private router: Router) {
   }
 
+
+  ngOnInit(): void {
+    const onBoardingIndex = parseInt(sessionStorage.getItem('onBoarding') || '');
+
+    if (!onBoardingIndex && this.currentIndex === 0) {
+      sessionStorage.clear();
+    }
+
+    if (onBoardingIndex) {
+      this.currentIndex = onBoardingIndex;
+      this.currentIndex++;
+    }
+  }
+
   next() {
     console.log('Moving to next step:', this.currentIndex);
 
@@ -113,12 +127,17 @@ export class OnboardingSlideComponent {
       return; // Stop the default next action
     }
 
+    if (this.onboarding[this.currentIndex].title == 'Your Wallet') {
+      sessionStorage.setItem('onBoarding', this.currentIndex.toString());
+      this.router.navigate(['/gas']);
+    }
+
     // Proceed to next step normally
     if (this.currentIndex < this.onboarding.length - 1) {
       this.currentIndex++;
     } else {
-      this.router.navigate(['/gas']);
-      this.showQuiz = true;
+      sessionStorage.setItem('onBoarding', '');
+      this.router.navigate(['/quiz']);
     }
   }
 

@@ -9,8 +9,9 @@
 
   <!-- MBTI Description -->
   <div class="description">
-    <p>{{ description }}</p>
+    <p [innerText]="description"></p>
   </div>
+
 
   <!-- Next Button -->
   <div class="navigation-buttons">
@@ -50,12 +51,3 @@
     </button>
   </div>
 </div>
-
-
-<!-- Step 2: Your Best Compatibility -->
-<div *ngIf="currentStep === 3" class="screen-container">
-  <app-gas></app-gas>
-
-</div>
-
-
