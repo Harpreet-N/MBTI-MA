@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng build --configuration production --base-href 'https://harpreet-n.github.io/MBTI-MA/' && npx angular-cli-ghpages --dir=dist/untitled"
+    "build:gh": "ng build --configuration production --output-path=docs --base-href=/MBTI-MA/",
+    "docss:deploy": "ng build --output-path docs --base-href /MBTI-MA/"
   },
   "private": true,
   "dependencies": {
