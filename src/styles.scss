@@ -9,6 +9,10 @@
     filled-label-text-color: white,
     outlined-label-text-color: black,
   ));
+  @include mat.chips-overrides((
+    outline-color: lightblue,
+    container-shape-radius: 50px,
+  ));
 }
 
 

@@ -72,6 +72,7 @@
         <div class="empty-state">
           <p>You do not have any NFTs yet.</p>
           <p><strong>Buy some NFT!</strong></p>
+          <button mat-stroked-button color="primary" (click)="router.navigate(['/marketplace'])">Marketplace</button>
         </div>
       </ng-template>
     </mat-tab>
@@ -102,6 +103,7 @@
         <div class="empty-state">
           <p>You do not have any upcoming events.</p>
           <p><strong>Join some events!</strong></p>
+          <button mat-flat-button color="accent" (click)="router.navigate(['/event'])">Join Event</button>
         </div>
       </ng-template>
     </mat-tab>

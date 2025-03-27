@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NgIf} from '@angular/common';
 import {MatButton} from '@angular/material/button';
 import {MatProgressBar} from '@angular/material/progress-bar';
@@ -19,7 +19,7 @@ import {BuyCryptoComponent} from '../buy-crypto/buy-crypto.component';
   standalone: true,
   styleUrl: './gas.component.css'
 })
-export class GasComponent {
+export class GasComponent implements OnInit {
   @Input() title: string = '';
   @Input() text?: string = '';
   @Input() video?: string | undefined;
@@ -41,6 +41,10 @@ export class GasComponent {
       progress: 100
     },
   ];
+
+  ngOnInit() {
+    alert('Continue with the questions in the form.');
+  }
 
   next() {
     // If we are at the last onboarding slide, start quiz

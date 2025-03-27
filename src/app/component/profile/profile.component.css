@@ -82,7 +82,7 @@
 .mbti-small {
   margin: 0;
   font-size: 0.85rem;
-  color: #666;
+  color: #000000;
 }
 
 .mbti-info {
@@ -91,7 +91,7 @@
 
 .mbti-small {
   font-size: 0.85rem;
-  color: #555;
+  color: #000000;
 }
 
 /* Stats Section */
@@ -108,7 +108,7 @@
   flex: 1;
   text-align: center;
   padding: 12px 0;
-  border-right: 1px solid #ddd;
+  border-right: 0.5px solid #ddd;
 }
 
 .stat:last-child {
@@ -117,12 +117,12 @@
 
 .stat h3 {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .stat p {
   margin: 4px 0 0;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: #777;
 }
 

@@ -205,6 +205,14 @@ html {
   --mdc-outlined-button-label-text-color: black
 }
 
+:root {
+  --mdc-chip-outline-color: lightblue
+}
+
+:root {
+  --mdc-chip-container-shape-radius: 50px
+}
+
 html, body {
   height: 100%;
   margin: 0;

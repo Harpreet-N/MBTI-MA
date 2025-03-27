@@ -112,6 +112,7 @@ export class OnboardingSlideComponent implements OnInit {
     }
 
     if (onBoardingIndex) {
+      alert('Continue with the questions in the form.');
       this.currentIndex = onBoardingIndex;
       this.currentIndex++;
     }
