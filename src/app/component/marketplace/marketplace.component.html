@@ -1,13 +1,23 @@
 <div class="marketplace-container">
-  <h1>Marketplace</h1>
-
-  <div class="carousel">
+  <div class="header">
+    <button mat-icon-button (click)="router.navigate(['/profile'])" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1>Marketplace</h1>
+  </div>
+  <div class="nft-grid">
     <div *ngFor="let nft of nfts" class="nft-card" (click)="viewDetails(nft)">
-      <img [src]="nft.imageUrl" alt="{{ nft.title }}">
+      <img [src]="nft.imageUrl" [alt]="nft.title">
       <div class="nft-info">
-        <h3>{{ nft.title }}</h3>
-        <p><strong>{{ nft.creator }}</strong></p>
-        <p>Reserve Price <strong>{{ nft.priceEth }} ETH</strong> (€{{ nft.priceEur }})</p>
+        <h3>{{nft.title}}</h3>
+        <p class="creator">by {{nft.creator}}</p>
+        <div class="price-container">
+          <span class="price">{{nft.priceEth}} ETH</span>
+          <span class="price-eur">€{{nft.priceEur}}</span>
+        </div>
+        <div class="tags">
+          <span *ngFor="let tag of nft.tags" class="tag">{{tag}}</span>
+        </div>
       </div>
     </div>
   </div>

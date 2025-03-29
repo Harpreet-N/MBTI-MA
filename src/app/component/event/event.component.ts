@@ -1,41 +1,60 @@
-import {Component} from '@angular/core';
-import {MatCheckbox} from '@angular/material/checkbox';
-import {MatCard, MatCardActions, MatCardContent, MatCardImage} from '@angular/material/card';
-import {MatIcon} from '@angular/material/icon';
-import {MatButton, MatIconButton} from '@angular/material/button';
+import {Component, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {Router} from '@angular/router';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {EventModel} from '../../model/event.model';
 import {JoinEventDialogComponent} from './join-event-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
-import {Router} from '@angular/router';
-import {EventModel} from '../../model/event.model';
+import {ActivatedRoute} from '@angular/router';
 import {NgForOf, NgIf} from '@angular/common';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatFormField, MatLabel} from '@angular/material/form-field';
-import {MatOption, MatSelect} from '@angular/material/select';
+import {MatCheckbox} from '@angular/material/checkbox';
+import {MatCard, MatCardActions, MatCardContent, MatCardImage} from '@angular/material/card';
+import {MatIconButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-event',
+  standalone: true,
   imports: [
+    CommonModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatChipsModule,
+    MatDividerModule,
+    MatListModule,
+    MatTabsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatCheckbox,
     MatCard,
     MatCardContent,
     MatCardActions,
-    MatIcon,
-    MatButton,
-    MatIconButton,
     MatCardImage,
     NgForOf,
     NgIf,
-    MatChipsModule,
-    MatLabel,
-    MatFormField,
-    MatSelect,
-    MatOption
+    MatIconButton
   ],
   templateUrl: './event.component.html',
-  standalone: true,
-  styleUrl: './event.component.css'
+  styleUrls: ['./event.component.css']
 })
-export class EventComponent {
+export class EventComponent implements OnInit {
   allEvents: EventModel[] = [
     {
       id: 1,
@@ -84,13 +103,47 @@ export class EventComponent {
   mbtiOptions: string[] = ['External', 'Internal', 'Intuition', 'Sensing', 'Thinking', 'Feeling', 'Judging', 'Perceiving'];
   selectedFilters: string[] = [];
 
-
   filteredEvents: EventModel[] = [...this.allEvents];
   selectedEvent: EventModel | null = null;
+  isJoined: boolean = false;
 
-  constructor(private dialog: MatDialog, private router: Router) {
+  constructor(
+    private dialog: MatDialog,
+    public router: Router,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    // Check for event ID in route params
+    this.route.params.subscribe(params => {
+      if (params['id']) {
+        const eventId = Number(params['id']);
+        const event = this.allEvents.find(e => e.id === eventId);
+        if (event) {
+          this.selectedEvent = event;
+          this.checkIfJoined();
+        }
+      }
+    });
+
+    // Check for event title in query params (for navigation from profile)
+    this.route.queryParams.subscribe(params => {
+      if (params['title']) {
+        const event = this.allEvents.find(e => e.title === params['title']);
+        if (event) {
+          this.selectedEvent = event;
+          this.checkIfJoined();
+        }
+      }
+    });
   }
 
+  private checkIfJoined(): void {
+    if (!this.selectedEvent) return;
+    
+    const joinedEvents = JSON.parse(sessionStorage.getItem('joinedEvents') || '[]');
+    this.isJoined = joinedEvents.some((event: EventModel) => event.id === this.selectedEvent?.id);
+  }
 
   applyFilters(): void {
     if (this.selectedFilters.length === 0) {
@@ -102,12 +155,23 @@ export class EventComponent {
     }
   }
 
-
   selectEvent(event: EventModel): void {
-    this.selectedEvent = event;
+    this.router.navigate(['/event', event.id]);
+  }
+
+  goBack(): void {
+    if (this.route.snapshot.queryParams['title']) {
+      // If we came from profile, go back to profile
+      this.router.navigate(['/profile']);
+    } else {
+      // Otherwise, go back to event list
+      this.router.navigate(['/event']);
+    }
   }
 
   joinEvent(): void {
+    if (this.isJoined) return;
+
     const dialogRef = this.dialog.open(JoinEventDialogComponent, {
       width: '300px',
       data: {event: this.selectedEvent}
@@ -123,6 +187,7 @@ export class EventComponent {
         if (!eventExists && this.selectedEvent) {
           storedEvents.push(this.selectedEvent);
           sessionStorage.setItem('joinedEvents', JSON.stringify(storedEvents));
+          this.isJoined = true;
         }
 
         // 3. Navigate to profile (or handle as you need)

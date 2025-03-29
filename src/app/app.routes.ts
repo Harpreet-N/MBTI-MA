@@ -14,6 +14,7 @@ export const routes: Routes = [{path: 'marketplace', component: MarketplaceCompo
   {path: 'nft-detail/:id', component: NftDetailComponent},
   {path: 'buyCrypto', component: BuyCryptoComponent},
   {path: 'event', component: EventComponent},
+  {path: 'event/:id', component: EventComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'profile/edit', component: EditProfileComponent},
   {path: 'wallet', component: WalletCreationComponent},

@@ -51,12 +51,12 @@
   </div>
 
   <!-- Tabs -->
-  <mat-tab-group (selectedIndexChange)="onTabChange($event)">
+  <mat-tab-group [(selectedIndex)]="selectedTabIndex" (selectedIndexChange)="onTabChange($event)">
 
     <!-- NFT Tab -->
     <mat-tab label="NFT">
       <ng-container *ngIf="nftList.length > 0; else noNfts">
-        <div class="nft-container" *ngFor="let nft of nftList">
+        <div class="nft-container" *ngFor="let nft of nftList" (click)="viewNftDetails(nft)">
           <img [src]="nft.imageUrl" alt="{{ nft.title }}" class="nft-image"/>
           <div>
             <h4>{{ nft.title }}</h4>
@@ -80,7 +80,7 @@
     <!-- Events Tab -->
     <mat-tab label="Events">
       <ng-container *ngIf="upcomingEvents.length > 0; else noEvents">
-        <div class="event-container" *ngFor="let event of upcomingEvents">
+        <div class="event-container" *ngFor="let event of upcomingEvents" (click)="viewEventDetails(event)">
           <img [src]="event.image" alt="{{ event.title }}" class="event-thumb"/>
           <div class="event-details">
             <h4>{{ event.title }}</h4>
@@ -89,7 +89,7 @@
           </div>
 
           <div *ngIf="event.status === 'active'">
-            <button mat-icon-button color="warn" (click)="removeEvent(event)">
+            <button mat-icon-button color="warn" (click)="removeEvent(event); $event.stopPropagation()">
               <mat-icon>close</mat-icon>
             </button>
           </div>

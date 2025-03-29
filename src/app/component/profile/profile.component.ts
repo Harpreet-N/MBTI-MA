@@ -8,6 +8,7 @@ import {NFT} from '../../model/nft.model';
 import {ConfirmationDialogComponent} from './confirmationDialogComponent';
 import {MatDialog} from '@angular/material/dialog';
 import {EventProfile} from '../../model/event.profile.model';
+import {EventModel} from '../../model/event.model';
 
 @Component({
   selector: 'app-profile',
@@ -80,6 +81,7 @@ export class ProfileComponent implements OnInit {
     }
   ];
 
+  selectedTabIndex: number = 0;
 
   constructor(protected router: Router, private dialog: MatDialog) {
   }
@@ -91,10 +93,10 @@ export class ProfileComponent implements OnInit {
   }
 
   onTabChange(index: number): void {
-    const tabLabels = ['nft', 'events', 'replies', 'likes'];
-    this.activeTab = tabLabels[index] || 'nft';
+    this.selectedTabIndex = index;
+    // Save the selected tab index to session storage
+    sessionStorage.setItem('profileSelectedTab', index.toString());
   }
-
 
   ngOnInit(): void {
     // Fetch MBTI and Compatibility from session storage
@@ -102,6 +104,11 @@ export class ProfileComponent implements OnInit {
     this.loadJoinedEventsFromSession();
     this.getDate();
     this.loadNFTList();
+    // Restore the selected tab index from session storage
+    const savedTabIndex = sessionStorage.getItem('profileSelectedTab');
+    if (savedTabIndex !== null) {
+      this.selectedTabIndex = parseInt(savedTabIndex);
+    }
   }
 
   private loadNFTList() {
@@ -119,7 +126,6 @@ export class ProfileComponent implements OnInit {
     const storedEvents = JSON.parse(sessionStorage.getItem('joinedEvents') || '[]');
     this.upcomingEvents = storedEvents.length ? storedEvents : [];
   }
-
 
   private getDate() {
     // Generate current date in DD.MM.YY format
@@ -141,6 +147,18 @@ export class ProfileComponent implements OnInit {
       if (result) {
         this.upcomingEvents = this.upcomingEvents.filter(e => e !== event);
       }
+    });
+  }
+
+  viewEventDetails(event: EventProfile): void {
+    this.router.navigate(['/event'], {
+      queryParams: { title: event.title }
+    });
+  }
+
+  viewNftDetails(nft: NFT): void {
+    this.router.navigate(['/nft-detail', nft.id], {
+      queryParams: { source: 'profile' }
     });
   }
 }

@@ -22,6 +22,8 @@ import {BuyDialogComponent} from '../buy-dialog/buy-dialog.component';
 })
 export class NftDetailComponent implements OnInit {
   nft: NFT | undefined;
+  cameFromProfile: boolean = false;
+  isOwned: boolean = false;
 
   nfts: NFT[] = [
     {
@@ -45,7 +47,7 @@ export class NftDetailComponent implements OnInit {
       tags: ['#color', '#circle', '#black', '#art']
     },
     {
-      id: 2,
+      id: 3,
       title: 'Polarbear',
       creator: 'Cold',
       priceEth: 0.5,
@@ -64,9 +66,34 @@ export class NftDetailComponent implements OnInit {
   ngOnInit(): void {
     const nftId = +this.route.snapshot.paramMap.get('id')!;
     this.nft = this.nfts.find(item => item.id === nftId);
+    
+    // Check if we came from profile using query parameters
+    this.route.queryParams.subscribe(params => {
+      this.cameFromProfile = params['source'] === 'profile';
+    });
+
+    // Check if the NFT is already owned by the user
+    this.checkIfOwned();
+  }
+
+  private checkIfOwned(): void {
+    if (!this.nft) return;
+    
+    const userNfts = JSON.parse(sessionStorage.getItem('nftList') || '[]');
+    this.isOwned = userNfts.some((ownedNft: NFT) => ownedNft.id === this.nft?.id);
+  }
+
+  goBack(): void {
+    if (this.cameFromProfile) {
+      this.router.navigate(['/profile']);
+    } else {
+      this.router.navigate(['/marketplace']);
+    }
   }
 
   buyNFT() {
+    if (this.isOwned) return;
+    
     const dialogRef = this.dialog.open(BuyDialogComponent, {
       width: '300px',
       data: { nft: this.nft }
@@ -79,7 +106,7 @@ export class NftDetailComponent implements OnInit {
         nftList.push(result);
         sessionStorage.setItem('nftList', JSON.stringify(nftList));
 
-        // Optional: navigate to profile
+        // Navigate to profile
         this.router.navigate(['/profile']);
       }
     });

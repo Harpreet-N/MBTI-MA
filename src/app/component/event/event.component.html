@@ -1,16 +1,19 @@
 <!-- Event List Container -->
 <div *ngIf="!selectedEvent" class="event-list-container">
+  <div class="header">
+    <button mat-icon-button (click)="router.navigate(['/profile'])" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1>Events</h1>
+  </div>
 
-  <!-- Filter Dropdown Section -->
-  <mat-form-field appearance="outline" class="filter-dropdown">
-    <mat-label>Filter by MBTI Type</mat-label>
-    <mat-select [(value)]="selectedFilters" multiple (selectionChange)="applyFilters()">
-      <mat-option *ngFor="let filter of mbtiOptions" [value]="filter">{{ filter }}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <div class="filtered-title">
-    {{ selectedFilters.length ? selectedFilters.join(', ') : 'All Events' }}
+  <div class="filter-container">
+    <mat-form-field appearance="outline" class="filter-dropdown">
+      <mat-label>Filter by MBTI Type</mat-label>
+      <mat-select [(value)]="selectedFilters" multiple (selectionChange)="applyFilters()">
+        <mat-option *ngFor="let filter of mbtiOptions" [value]="filter">{{ filter }}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 
   <!-- Events Card List -->
@@ -38,19 +41,17 @@
       </mat-card-actions>
     </mat-card>
   </div>
-
 </div>
 
 <!-- Event Detail View -->
 <div *ngIf="selectedEvent" class="event-detail-container">
-
   <!-- Back Button -->
-  <button mat-icon-button class="back-button" (click)="selectedEvent = null">
+  <button mat-icon-button class="back-button" (click)="goBack()">
     <mat-icon>arrow_back</mat-icon>
   </button>
 
   <!-- Event Image -->
-  <img class="detail-image"  [src]="selectedEvent.image" alt="{{ selectedEvent.title }}">
+  <img class="detail-image" [src]="selectedEvent.image" alt="{{ selectedEvent.title }}">
 
   <!-- Event Title -->
   <h2 class="event-title">{{ selectedEvent.title }}</h2>
@@ -90,8 +91,58 @@
 
   <!-- Action Buttons -->
   <div class="event-actions">
-    <button mat-stroked-button color="accent" (click)="addToWatchlist()">Add to Watchlist</button>
-    <button mat-flat-button color="primary" (click)="joinEvent()">Join</button>
+    <ng-container *ngIf="!isJoined">
+      <button mat-stroked-button color="accent" (click)="addToWatchlist()">Add to Watchlist</button>
+      <button mat-flat-button color="primary" (click)="joinEvent()">Join</button>
+    </ng-container>
+    <ng-container *ngIf="isJoined">
+      <div class="joined-badge">
+        <mat-icon color="primary">check_circle</mat-icon>
+        <span>Already Joined</span>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<div class="event-container">
+  <div class="header">
+    <button mat-icon-button (click)="router.navigate(['/profile'])" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1>Events</h1>
   </div>
 
+  <div class="filter-container">
+    <mat-form-field appearance="outline">
+      <mat-label>Filter by MBTI</mat-label>
+      <mat-select [(ngModel)]="selectedFilters" multiple (selectionChange)="applyFilters()">
+        <mat-option *ngFor="let option of mbtiOptions" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="event-grid">
+    <div *ngFor="let event of filteredEvents" class="event-card" (click)="selectEvent(event)">
+      <img [src]="event.image" [alt]="event.title">
+      <div class="event-info">
+        <h3>{{event.title}}</h3>
+        <div class="event-meta">
+          <span class="owner">
+            <img [src]="event.avatar" alt="Owner avatar" class="avatar">
+            {{event.owner}}
+          </span>
+          <span class="date">{{event.date}} {{event.time}}</span>
+        </div>
+        <div class="event-stats">
+          <span class="interested">{{event.interested}} interested</span>
+          <span class="joined">{{event.joined}} joined</span>
+        </div>
+        <div class="tags">
+          <span *ngFor="let type of event.type" class="tag">{{type}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

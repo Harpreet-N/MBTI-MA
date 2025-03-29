@@ -1,28 +1,37 @@
 /* Event List Container */
 .event-list-container {
-  padding: 12px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.back-button {
+  margin-right: 16px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
 }
 
 /* Filter Container */
 .filter-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 12px;
+  margin-bottom: 24px;
 }
 
 .filter-dropdown {
-  width: 90%;
+  width: 100%;
   max-width: 320px;
   margin: 0 auto;
   display: block;
-}
-
-/* Filtered Events Title */
-.filtered-title {
-  text-align: center;
-  font-weight: 600;
-  font-size: 1.1rem;
-  margin-bottom: 16px;
 }
 
 /* Event Cards */
@@ -52,17 +61,19 @@ mat-card-content h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.back-button {
-  align-self: flex-start;
-  margin-bottom: 16px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .detail-image {
   width: 100%;
+  max-width: 100%;
+  height: auto;
   border-radius: 12px;
   margin-bottom: 16px;
+  object-fit: cover;
 }
 
 /* Event Title */
@@ -79,6 +90,8 @@ mat-card-content h3 {
   align-items: center;
   gap: 12px;
   margin-bottom: 16px;
+  width: 100%;
+  max-width: 320px;
 }
 
 .owner-avatar {
@@ -104,6 +117,7 @@ mat-card-content h3 {
 /* Event Description */
 .event-description {
   width: 100%;
+  max-width: 320px;
   margin: 20px 0;
   text-align: center;
 }
@@ -126,6 +140,8 @@ mat-card-content h3 {
   justify-content: center;
   gap: 8px;
   margin-bottom: 24px;
+  width: 100%;
+  max-width: 320px;
 }
 
 mat-chip {
@@ -139,6 +155,9 @@ mat-chip {
   flex-direction: column;
   width: 100%;
   gap: 12px;
+  align-items: center;
+  max-width: 320px;
+  margin: 0 auto;
 }
 
 .event-actions button {
@@ -146,8 +165,6 @@ mat-chip {
   font-size: 1rem;
   border-radius: 8px;
   width: 100%;
-  max-width: 320px;
-  margin: 0 auto;
 }
 
 /* Action Section Inside Cards */
@@ -178,18 +195,6 @@ h2, h3, p, span {
   color: #333;
 }
 
-/* Back button positioning on mobile */
-.back-button {
-  position: relative;
-  left: 0;
-}
-
-/* Mat Card for Events (Image and Content) */
-mat-card img {
-  height: 180px;
-  object-fit: cover;
-}
-
 /* Additional Mobile Friendly Adjustments */
 body {
   font-family: 'Roboto', sans-serif;
@@ -198,4 +203,45 @@ body {
 
 mat-chip-list {
   justify-content: center;
+}
+
+.joined-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  background-color: rgba(25, 118, 210, 0.1);
+  border-radius: 8px;
+  color: #1976d2;
+  font-weight: 500;
+  width: 100%;
+  height: 48px;
+  box-sizing: border-box;
+}
+
+.joined-badge mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+/* Mat Card for Events (Image and Content) */
+mat-card img {
+  height: 180px;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .event-list-container {
+    padding: 16px;
+  }
+  
+  .filter-dropdown {
+    width: 100%;
+  }
+  
+  mat-card {
+    width: 100%;
+  }
 }

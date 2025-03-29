@@ -1,18 +1,21 @@
 import { Component } from '@angular/core';
-import {Router} from '@angular/router';
-import {NFT} from '../../model/nft.model';
-import {NgForOf} from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { NFT } from '../../model/nft.model';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-marketplace',
+  standalone: true,
   imports: [
-    NgForOf
+    CommonModule,
+    MatIconModule,
+    MatButtonModule
   ],
   templateUrl: './marketplace.component.html',
-  standalone: true,
-  styleUrl: './marketplace.component.css'
+  styleUrls: ['./marketplace.component.css']
 })
-
 export class MarketplaceComponent {
   nfts: NFT[] = [
     {
@@ -36,7 +39,7 @@ export class MarketplaceComponent {
       tags: ['#color', '#circle', '#black', '#art']
     },
     {
-      id: 2,
+      id: 3,
       title: 'Polarbear',
       creator: 'Cold',
       priceEth: 0.5,
@@ -47,9 +50,9 @@ export class MarketplaceComponent {
     }
   ];
 
-  constructor(private router: Router) {}
+  constructor(public router: Router) {}
 
-  viewDetails(nft: NFT) {
+  viewDetails(nft: NFT): void {
     this.router.navigate(['/nft-detail', nft.id]);
   }
 }
