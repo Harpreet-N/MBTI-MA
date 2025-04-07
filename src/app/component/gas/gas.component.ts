@@ -43,7 +43,7 @@ export class GasComponent implements OnInit {
   ];
 
   ngOnInit() {
-    alert('Continue with the questions in the form.');
+    // alert('Continue with the questions in the form.');
   }
 
   next() {

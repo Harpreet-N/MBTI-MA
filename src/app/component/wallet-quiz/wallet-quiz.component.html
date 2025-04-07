@@ -1,0 +1,61 @@
+<div class="quiz-container">
+  <div class="header">
+    <button mat-icon-button (click)="router.navigate(['/profile'])" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1>Wallet Quiz</h1>
+  </div>
+
+  <mat-card class="quiz-card">
+    <mat-card-content>
+      <div class="question-container">
+        <h2 class="question">{{ question }}</h2>
+
+        <div class="options-container">
+          <div
+            *ngFor="let option of options"
+            class="option"
+            [class.selected]="selectedOption === option.id"
+            [class.correct]="isSubmitted && option.correct"
+            [class.incorrect]="isSubmitted && selectedOption === option.id && !option.correct"
+            (click)="selectOption(option.id)">
+            <div class="option-letter">{{ option.id }}</div>
+            <div class="option-text">{{ option.text }}</div>
+            <div class="option-icon" *ngIf="isSubmitted && option.correct">
+              <mat-icon>check_circle</mat-icon>
+            </div>
+            <div class="option-icon" *ngIf="isSubmitted && selectedOption === option.id && !option.correct">
+              <mat-icon>cancel</mat-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-container" *ngIf="isSubmitted">
+        <div class="result-message" [class.correct]="isCorrect" [class.incorrect]="!isCorrect">
+          <mat-icon *ngIf="isCorrect">celebration</mat-icon>
+          <mat-icon *ngIf="!isCorrect">error</mat-icon>
+          <h3>{{ isCorrect ? 'Correct! 🎉' : 'Incorrect' }}</h3>
+        </div>
+
+        <div class="explanation">
+          <p>{{ explanation }}</p>
+        </div>
+
+        <div class="action-buttons">
+          <button mat-flat-button color="primary" (click)="continue()">Continue</button>
+        </div>
+      </div>
+
+      <div class="action-buttons" *ngIf="!isSubmitted">
+        <button
+          mat-flat-button
+          color="primary"
+          [disabled]="!selectedOption"
+          (click)="submitAnswer()">
+          Submit
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

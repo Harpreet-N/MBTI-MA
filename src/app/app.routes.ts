@@ -9,6 +9,7 @@ import {EditProfileComponent} from './component/edit-profile/edit-profile.compon
 import {WalletCreationComponent} from './component/wallet-creation/wallet-creation.component';
 import {GasComponent} from './component/gas/gas.component';
 import {QuizComponent} from './component/quiz/quiz.component';
+import {WalletQuizComponent} from './component/wallet-quiz/wallet-quiz.component';
 
 export const routes: Routes = [{path: 'marketplace', component: MarketplaceComponent},
   {path: 'nft-detail/:id', component: NftDetailComponent},
@@ -20,5 +21,6 @@ export const routes: Routes = [{path: 'marketplace', component: MarketplaceCompo
   {path: 'wallet', component: WalletCreationComponent},
   {path: 'gas', component: GasComponent},
   {path: 'quiz', component: QuizComponent},
+  {path: 'quizlearn', component: WalletQuizComponent},
   {path: '', component: OnboardingSlideComponent}
 ];

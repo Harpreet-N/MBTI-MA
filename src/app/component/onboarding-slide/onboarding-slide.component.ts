@@ -85,6 +85,17 @@ export class OnboardingSlideComponent implements OnInit {
       image: 'assets/onboarding/wallet-bitcoin.jpg',
     },
     {
+      title: 'Your Web3 wallet is ready!',
+      text: `Think of it as your personal digital keychain that lets you:<br><br>
+🔐 Prove who you are (no need for usernames or passwords)<br>
+🧾 Store your NFTs and digital collectibles securely<br>
+💸 Sign transactions and manage your activity on the blockchain<br>
+🧬 Match with people and join events based on your preferences`,
+      video: null,
+      progress: null,
+      image: 'assets/onboarding/wallet-bitcoin.jpg',
+    },
+    {
       title: 'The key principle of Echo is MBTI',
       text: 'This Video will give you an overview about MBTI',
       video: `<iframe width="390" height="330" src="https://www.youtube.com/embed/RoQi9Mvqip0?si=70kTet-0bNqEBP2Q" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
@@ -112,7 +123,7 @@ export class OnboardingSlideComponent implements OnInit {
     }
 
     if (onBoardingIndex) {
-      alert('Continue with the questions in the form.');
+      // alert('Continue with the questions in the form.');
       this.currentIndex = onBoardingIndex;
       this.currentIndex++;
     }
@@ -128,7 +139,7 @@ export class OnboardingSlideComponent implements OnInit {
       return; // Stop the default next action
     }
 
-    if (this.onboarding[this.currentIndex].title == 'Your Wallet') {
+    if (this.onboarding[this.currentIndex].title == 'Your Web3 wallet is ready!') {
       sessionStorage.setItem('onBoarding', this.currentIndex.toString());
       this.router.navigate(['/gas']);
     }

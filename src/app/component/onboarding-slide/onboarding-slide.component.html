@@ -13,7 +13,7 @@
   <!-- If there is NO video -->
   <ng-template #showImage>
     <img [src]="onboarding[currentIndex].image" alt="Onboarding Image" class="onboarding-image"/>
-    <p>{{ onboarding[currentIndex].text }}</p>
+    <p [innerHTML]="onboarding[currentIndex].text"></p>
   </ng-template>
 
   <div class="navigation-wrapper">
