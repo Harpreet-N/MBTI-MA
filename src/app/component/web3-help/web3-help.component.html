@@ -1,0 +1,34 @@
+<div class="help-container">
+  <div class="header">
+    <button mat-icon-button (click)="router.navigate(['/profile'])" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1>Web3 & Echo Help</h1>
+  </div>
+
+  <div class="content">
+    <p class="intro-text">
+      Welcome to the Web3 & Echo help center! Here you'll find answers to common questions about Web3 wallets,
+      blockchain technology, and how Echo uses these technologies to create a better experience for you.
+    </p>
+
+    <mat-accordion class="help-accordion">
+      <mat-expansion-panel *ngFor="let panel of helpPanels" class="help-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ panel.question }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p class="answer-text">{{ panel.answer }}</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <div class="additional-help">
+      <h2>Test your knowledge</h2>
+      <p>Check out our wallet quiz to test your knowledge and learn more about Web3!</p>
+      <button mat-flat-button color="primary" (click)="router.navigate(['/quizlearn'])">
+        Take the Wallet Quiz
+      </button>
+    </div>
+  </div>
+</div>

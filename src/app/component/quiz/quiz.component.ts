@@ -1,12 +1,14 @@
 import {Component} from '@angular/core';
-import {MatButton} from '@angular/material/button';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 import {NgForOf, NgIf} from '@angular/common';
 import {MbtiResultComponent} from '../mbti-result/mbti-result.component';
 
 @Component({
   selector: 'app-quiz',
   imports: [
-    MatButton,
+    MatButtonModule,
+    MatIconModule,
     NgForOf,
     MbtiResultComponent,
     NgIf
@@ -59,7 +61,7 @@ export class QuizComponent {
       question: "In a group setting, I prefer to…",
       options: [
         {text: "Debate and challenge ideas to find the best solution.", value: "T"},
-        {text: "Consider people’s feelings and seek harmony.", value: "F"}
+        {text: "Consider people's feelings and seek harmony.", value: "F"}
       ]
     },
     {

@@ -1,0 +1,92 @@
+.help-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.header {
+  position: relative;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.back-button {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.content {
+  margin-top: 24px;
+}
+
+.intro-text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #666;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.help-accordion {
+  margin-bottom: 32px;
+}
+
+.help-panel {
+  margin-bottom: 8px;
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+
+.help-panel ::ng-deep .mat-expansion-panel-header {
+  height: 64px !important;
+  padding: 0 16px;
+}
+
+.help-panel ::ng-deep .mat-expansion-panel-header-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.answer-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #555;
+  padding: 8px 0;
+}
+
+.additional-help {
+  text-align: center;
+  margin-top: 40px;
+  padding: 24px;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+}
+
+.additional-help h2 {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 0 12px 0;
+  color: #333;
+}
+
+.additional-help p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #666;
+  margin: 0 0 24px 0;
+}
+
+.additional-help button {
+  min-width: 180px;
+  height: 48px;
+  font-size: 16px;
+} 

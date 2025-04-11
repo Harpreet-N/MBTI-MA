@@ -7,76 +7,211 @@ html, body {
 
 .quiz-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  height: 90vh;
+  min-height: 100vh;
   padding: 20px;
-  box-sizing: border-box;  /* Ensure padding is included in the element's total width and height */
+  background-color: #f8f9fa;
+  box-sizing: border-box;
 }
 
-.question-number {
-  font-size: 1em;       /* Slightly larger question number */
-  color: #555;
-  margin-bottom: 10px;   /* Add some space below the question number */
+.quiz-card {
+  width: 100%;
+  max-width: 800px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  animation: fadeIn 0.5s ease-out;
+  position: relative;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Question */
+.question-container {
+  text-align: center;
+  margin: 0 0 24px 0;
 }
 
 h2 {
-  font-size: 1.3em;       /* Adjust the heading size */
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 20px;   /* Add some spacing under the question */
-  line-height: 1.4;       /* Improve line height for better readability */
+  font-size: 28px;
+  font-weight: 600;
+  color: #212529;
+  line-height: 1.4;
+  margin: 0;
 }
 
+/* Answers */
 .answers {
   display: flex;
   flex-direction: column;
-  width: 100%;          /* Make answers container take up full width */
-  max-width: 500px;      /* Limit the maximum width */
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
 .answer-button {
-  background-color: #f5f5f5; /* Light gray button color */
-  border-radius: 10px;    /* Rounded corners for buttons */
-  border: none;
-  padding: 12px 15px;     /* Increased padding for better touch area */
-  margin-bottom: 10px;   /* Add spacing between buttons */
-  font-size: 1em;       /* Adjust font size */
-  text-align: center;     /* Center the text in the buttons */
-  cursor: pointer;        /* Change cursor to pointer on hover */
-  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
+  background-color: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  overflow: hidden;
+  text-align: left;
+  width: 100%;
 }
 
 .answer-button:hover {
-  background-color: #ddd;   /* Darker background on hover */
+  background-color: #e9ecef;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 .answer-button.selected {
-  background-color: #242F51; /* Blue color when selected */
-  color: white;          /* White text color when selected */
+  background-color: #e8eaf6;
+  border-color: #3f51b5;
+  box-shadow: 0 4px 12px rgba(63, 81, 181, 0.15);
 }
 
+.answer-content {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.answer-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #e9ecef;
+  border-radius: 50%;
+  font-weight: 600;
+  margin-right: 20px;
+  color: #495057;
+  flex-shrink: 0;
+}
+
+.selected .answer-letter {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.answer-text {
+  font-size: 18px;
+  color: #495057;
+  flex-grow: 1;
+}
+
+.selected .answer-text {
+  color: #3f51b5;
+  font-weight: 500;
+}
+
+/* Navigation Buttons */
 .navigation-buttons {
   display: flex;
   justify-content: space-between;
-  width: 100%;              /* Buttons take up full width */
-  max-width: 500px;          /* Limit the maximum width */
-  margin-top: 20px;         /* Add some space above the buttons */
-  gap: 10px;                 /* Add padding between the buttons */
+  margin-bottom: 32px;
+  width: 100%;
+  gap: 16px;
 }
 
 .navigation-buttons button {
-  flex: 1;                  /* Make the buttons stretch to fill the available space */
-  padding: 10px 20px;         /* Padding for the buttons */
-  border-radius: 8px;       /* Rounded corners */
-  font-size: 1em;           /* Adjust font size */
-  cursor: pointer;          /* Change cursor to pointer on hover */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  flex: 1;
+  min-width: 120px;
 }
 
 .navigation-buttons button[disabled] {
-  opacity: 0.5;              /* Reduce opacity for disabled buttons */
-  cursor: not-allowed;        /* Change cursor to not-allowed for disabled buttons */
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Progress Bar */
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid #e9ecef;
+}
+
+.progress-bar {
+  height: 10px;
+  background-color: #e9ecef;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #3f51b5;
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+.question-counter {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 16px;
+  color: #6c757d;
+}
+
+.question-counter .current {
+  font-weight: 600;
+  color: #3f51b5;
+}
+
+.question-counter .separator {
+  margin: 0 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .quiz-card {
+    padding: 32px;
+    border-radius: 12px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  .answer-content {
+    padding: 16px;
+  }
+
+  .answer-letter {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .answer-text {
+    font-size: 16px;
+  }
 }
 

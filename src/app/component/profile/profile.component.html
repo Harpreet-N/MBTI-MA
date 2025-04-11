@@ -10,6 +10,10 @@
       <mat-icon>settings</mat-icon>
     </button>
 
+    <button mat-icon-button (click)="router.navigate(['/web3-help'])" class="help-button">
+      <mat-icon>help_outline</mat-icon>
+    </button>
+
   </div>
 
   <!-- Avatar & Name Section -->
@@ -24,6 +28,12 @@
       <div class="mbti-info">
         <p class="mbti-small">MBTI TYPE: <strong>{{ user.mbtiType }}</strong></p>
         <p class="mbti-small">Compatibility: <strong>{{ user.compatibility }}</strong></p>
+        <div class="learn-more-container">
+          <button mat-stroked-button color="primary" (click)="router.navigate(['/web3-help'])">
+            <mat-icon>school</mat-icon>
+            <span>Learn more about Web3</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>

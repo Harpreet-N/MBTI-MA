@@ -53,9 +53,27 @@ export class OnboardingSlideComponent implements OnInit {
       image: 'assets/onboarding/echo2.jpg',
     },
     {
+      title: 'What is Echo',
+      text: `Echo is your personalized gateway into the Web3 social world.<br><br>
+🌐 Connect with others based on shared values and personality (MBTI)<br>
+💼 Own your identity and data with your Web3 wallet<br>
+🎭 Discover events and communities aligned with your interests<br>
+🔒 Experience privacy and freedom – you’re in full control<br><br>
+Get ready to explore a new kind of social experience.`,
+      video: null,
+      progress: null,
+      image: 'assets/onboarding/echo2.jpg',
+    },
+    {
       title: 'Discover Web3',
       text: 'Web3 is the next evolution of the internet, where users have full control over their data, identities, and digital assets.',
       video: `<iframe width="390" height="330" src="https://www.youtube.com/embed/GmRbLcmX4A4?si=hU8cPxwUXX1X0nZw&amp;start=3" title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
+      progress: 50
+    },
+    {
+      title: 'Learn about Web3',
+      text: 'Web3 is the next evolution of the internet, where users have full control over their data, identities, and digital assets.',
+      video: `<iframe width="390" height="330" src="https://www.youtube.com/embed/FExp9YuTzbY?si=EccVLQHTWAtXV6_s&amp;start=55" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
       progress: 50
     },
     {

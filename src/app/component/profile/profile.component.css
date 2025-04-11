@@ -94,6 +94,31 @@
   color: #000000;
 }
 
+.learn-more-container {
+  display: flex;
+  margin-top: 12px;
+  margin-bottom: 4px;
+}
+
+.learn-more-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 12px;
+  border-radius: 18px;
+  width: fit-content;
+}
+
+.learn-more-button mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  margin-right: 4px;
+}
+
 /* Stats Section */
 .stats-container {
   display: flex;
