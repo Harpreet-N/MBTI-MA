@@ -1,53 +1,76 @@
 <!-- Step 1: Your Result -->
-<div *ngIf="currentStep === 1" class="screen-container">
-  <h2 class="title">YOUR RESULT</h2>
+<div *ngIf="currentStep === 1" class="result-container">
+  <div class="result-card">
+    <div class="result-header">
+      <h2 class="title">Your Personality Type</h2>
+      <div class="mbti-badge">{{ mbtiType }}</div>
+    </div>
 
-  <!-- MBTI Character Image -->
-  <div class="mbti-image-container">
-    <img [src]="mbtiImage" alt="{{ mbtiType }}" />
-  </div>
+    <!-- MBTI Character Image -->
+    <div class="mbti-image-container">
+      <img [src]="mbtiImage" alt="{{ mbtiType }}"/>
+    </div>
 
-  <!-- MBTI Description -->
-  <div class="description">
-    <p [innerText]="description"></p>
-  </div>
+    <!-- Character Title -->
+    <div class="character-title">
+      <h3>{{ character }}</h3>
+    </div>
 
+    <!-- MBTI Description -->
+    <div class="description">
+      <p [innerText]="description"></p>
+    </div>
 
-  <!-- Next Button -->
-  <div class="navigation-buttons">
-    <button mat-flat-button color="primary" (click)="nextStep()">
-      Next
-    </button>
+    <!-- Next Button -->
+    <div class="navigation-buttons">
+      <button mat-flat-button color="primary" (click)="nextStep()">
+        <span>See Compatibility</span>
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
   </div>
 </div>
 
 <!-- Step 2: Your Best Compatibility -->
-<div *ngIf="currentStep === 2" class="screen-container">
-  <h2 class="title">Your best compatibility is</h2>
+<div *ngIf="currentStep === 2" class="result-container">
+  <div class="result-card">
+    <div class="result-header">
+      <h2 class="title">Your Best Match</h2>
+      <div class="compatibility-badge">
+        <span class="your-type">{{ mbtiType }}</span>
+        <span class="compatibility-icon">❤️</span>
+        <span class="compatible-type">{{ compatibleType }}</span>
+      </div>
+    </div>
 
-  <!-- 🔥 Compatibility Image -->
-  <div class="mbti-image-container">
-    <img *ngIf="compatibilityImage" [src]="compatibilityImage" [alt]="compatibleType">
-  </div>
+    <!-- Compatibility Images -->
+    <div class="compatibility-images">
+      <div class="image-container">
+        <img [src]="mbtiImage" [alt]="mbtiType">
+        <div class="image-label">{{ mbtiType }}</div>
+      </div>
+      <div class="compatibility-icon-large">❤️</div>
+      <div class="image-container">
+        <img *ngIf="compatibilityImage" [src]="compatibilityImage" [alt]="compatibleType">
+        <div class="image-label">{{ compatibleType }}</div>
+      </div>
+    </div>
 
-  <!-- Compatibility Description -->
-  <div class="description">
-    <p>{{ compatibilityDescription }}</p>
-  </div>
+    <!-- Compatibility Description -->
+    <div class="description">
+      <p>{{ compatibilityDescription }}</p>
+    </div>
 
-  <!-- Navigation Buttons -->
-  <div class="navigation-buttons">
-    <button
-      mat-stroked-button
-      (click)="prevStep()">
-      Back
-    </button>
-
-    <button
-      mat-flat-button
-      color="primary"
-      (click)="nextStep()">
-      Next
-    </button>
+    <!-- Navigation Buttons -->
+    <div class="navigation-buttons">
+      <button mat-stroked-button (click)="prevStep()">
+        <mat-icon>arrow_back</mat-icon>
+        <span>Back</span>
+      </button>
+      <button mat-flat-button color="primary" (click)="nextStep()">
+        <span>Take Quiz Again</span>
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
   </div>
 </div>

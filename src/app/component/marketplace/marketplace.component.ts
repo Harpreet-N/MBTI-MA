@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-import { NFT } from '../../model/nft.model';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+import {Component} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {Router} from '@angular/router';
+import {NFT} from '../../model/nft.model';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialog} from '@angular/material/dialog';
+import {BuyDialogComponent} from '../buy-dialog/buy-dialog.component';
 
 @Component({
   selector: 'app-marketplace',
@@ -50,9 +52,17 @@ export class MarketplaceComponent {
     }
   ];
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, private dialog: MatDialog) {
+  }
 
   viewDetails(nft: NFT): void {
     this.router.navigate(['/nft-detail', nft.id]);
+  }
+
+  openBuyDialog(nft: NFT): void {
+    const dialogRef = this.dialog.open(BuyDialogComponent, {
+      width: '600px',
+      data: {nft}
+    });
   }
 }

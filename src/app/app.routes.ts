@@ -11,6 +11,7 @@ import {GasComponent} from './component/gas/gas.component';
 import {QuizComponent} from './component/quiz/quiz.component';
 import {WalletQuizComponent} from './component/wallet-quiz/wallet-quiz.component';
 import {Web3HelpComponent} from './component/web3-help/web3-help.component';
+import {MbtiLikertQuizComponent} from './component/mbti-likert-quiz/mbti-likert-quiz.component';
 
 export const routes: Routes = [{path: 'marketplace', component: MarketplaceComponent},
   {path: 'nft-detail/:id', component: NftDetailComponent},
@@ -24,5 +25,6 @@ export const routes: Routes = [{path: 'marketplace', component: MarketplaceCompo
   {path: 'quiz', component: QuizComponent},
   {path: 'quizlearn', component: WalletQuizComponent},
   {path: 'web3-help', component: Web3HelpComponent},
+  {path: 'mbti-quiz', component: MbtiLikertQuizComponent},
   {path: '', component: OnboardingSlideComponent}
 ];

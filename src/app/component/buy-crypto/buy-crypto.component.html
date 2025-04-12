@@ -1,6 +1,6 @@
 <div class="wallet-buy-container">
   <!-- Header -->
-  <h2 class="wallet-title">Buy Cryptocurrency</h2>
+  <h2 class="wallet-title">Buy Ethereum (ETH)</h2>
 
   <!-- Wallet Information -->
   <div class="wallet-info">
@@ -13,7 +13,7 @@
   </div>
 
   <!-- Input Field for Euro Amount -->
-  <mat-form-field appearance="fill" class="amount-input">
+  <mat-form-field appearance="fill">
     <mat-label>Enter amount in Euro (€)</mat-label>
     <input matInput type="number" [(ngModel)]="amount" (ngModelChange)="updateETHAmount()" placeholder="€ 0.00">
   </mat-form-field>
@@ -26,11 +26,17 @@
 
   <!-- Fee Info -->
   <div class="fee-info">
-    <p><mat-icon>info</mat-icon> Fee: 2.9% + $0.3 + gas ($5 minimum)</p>
+    <p>
+      <mat-icon
+        matTooltip="A small fee to process your transaction on the blockchain. Those fees are not from Echo they are from the blockchain."
+        matTooltipPosition="above">info
+      </mat-icon>
+      Fee: 2.9% + $0.3 + gas ($5 minimum)
+    </p>
   </div>
 
   <!-- Buy Button -->
   <button mat-flat-button color="primary" class="buy-button" [disabled]="amount <= 0" (click)="buyCrypto()">
-    Buy Now
+    Buy Ethereum
   </button>
 </div>

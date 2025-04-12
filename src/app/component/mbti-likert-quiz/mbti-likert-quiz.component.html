@@ -1,0 +1,57 @@
+<div class="quiz-container">
+  <div class="quiz-card">
+    <!-- Progress bar -->
+    <div class="progress-container">
+      <div class="progress-bar" [style.width.%]="getProgressPercentage()"></div>
+      <div class="progress-text">Question {{ currentQuestionIndex + 1 }} of {{ questions.length }}</div>
+    </div>
+
+    <!-- Question -->
+    <div class="question-container">
+      <h2 class="question-text">{{ getCurrentQuestion().text }}</h2>
+      <div class="question-category">{{ getCurrentQuestion().category }} – {{ getCurrentQuestion().dimension }}</div>
+    </div>
+
+    <!-- Likert Scale -->
+    <div class="likert-scale">
+      <div class="scale-label agree-label">Agree</div>
+      <div class="scale-options">
+        <div
+          *ngFor="let value of [1,2,3,4,5,6,7]"
+          class="scale-option"
+          [class.selected]="getCurrentQuestion().selectedValue === value"
+          [class.agree]="value <= 3"
+          [class.disagree]="value >= 5"
+          [class.neutral]="value === 4"
+          [class.size-1]="value === 1 || value === 7"
+          [class.size-2]="value === 2 || value === 6"
+          [class.size-3]="value === 3 || value === 5"
+          [class.size-4]="value === 4"
+          (click)="selectOption(value)">
+          <div class="radio-button"></div>
+        </div>
+      </div>
+      <div class="scale-label disagree-label">Disagree</div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="navigation-buttons">
+      <button
+        mat-stroked-button
+        [disabled]="currentQuestionIndex === 0"
+        (click)="previousQuestion()">
+        <mat-icon>arrow_back</mat-icon>
+        <span>Previous</span>
+      </button>
+
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="getCurrentQuestion().selectedValue === null"
+        (click)="nextQuestion()">
+        <span>{{ currentQuestionIndex === questions.length - 1 ? 'Finish' : 'Next' }}</span>
+        <mat-icon>{{ currentQuestionIndex === questions.length - 1 ? 'check' : 'arrow_forward' }}</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

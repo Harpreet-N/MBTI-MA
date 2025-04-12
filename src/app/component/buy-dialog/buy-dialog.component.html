@@ -1,5 +1,5 @@
 <div class="dialog-container">
-  <mat-icon class="success-icon">help_outline</mat-icon>
+  <mat-icon class="success-icon">info</mat-icon>
 
   <h2 class="dialog-title">Confirm Purchase</h2>
 
@@ -7,21 +7,52 @@
     Are you sure you want to buy <strong>{{ data.nft.title }}</strong>?
   </p>
 
+  <!-- NFT Details -->
+  <div class="nft-details">
+    <h3 class="details-title">NFT Details</h3>
+
+    <div class="detail-item">
+      <span class="detail-label">Creator:</span>
+      <span class="detail-value">{{ data.nft.creator }}</span>
+    </div>
+
+    <div class="detail-item">
+      <span class="detail-label">Description:</span>
+      <span class="detail-value">{{ data.nft.description }}</span>
+    </div>
+  </div>
+
   <!-- NFT Pricing Details -->
   <div class="price-info">
+    <h3 class="price-title">Price Breakdown</h3>
+
     <div class="price-row">
       <span class="label">Price (ETH):</span>
       <span class="value">{{ data.nft.priceEth }} ETH</span>
     </div>
+
     <div class="price-row">
       <span class="label">Price (EUR):</span>
       <span class="value">{{ data.nft.priceEur | currency: 'EUR':'symbol' }}</span>
     </div>
+
+    <div class="price-row total">
+      <span class="label">Total Cost:</span>
+      <span class="value">{{ data.nft.priceEur | currency: 'EUR':'symbol' }}</span>
+    </div>
+  </div>
+
+  <!-- NFT Info Section -->
+  <div class="nft-info-section">
+    <p><strong>What happens after purchase?</strong></p>
+    <p>After purchasing this NFT, it will be added to your wallet. You can view it in your profile and use it in
+      compatible Web3 applications.</p>
+    <p>NFTs are unique digital assets that represent ownership of digital or physical items on the blockchain.</p>
   </div>
 
   <!-- Buttons -->
   <div class="dialog-buttons">
     <button mat-stroked-button color="warn" (click)="cancel()">Cancel</button>
-    <button mat-flat-button color="primary" (click)="confirm()">Buy Crypto</button>
+    <button mat-flat-button color="primary" (click)="confirm()">Buy NFT</button>
   </div>
 </div>

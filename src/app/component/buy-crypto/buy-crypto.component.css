@@ -2,76 +2,174 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px;
-  background-color: #f9fafc;
+  padding: 32px;
+  background-color: #ffffff;
   border-radius: 16px;
-  max-width: 400px;
+  max-width: 450px;
   margin: 0 auto;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.wallet-buy-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #000000, #333333);
 }
 
 .wallet-title {
-  font-size: 1.6rem;
-  font-weight: 600;
-  margin-bottom: 16px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #000000;
+  text-align: center;
+  position: relative;
+}
+
+.wallet-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #000000;
+  border-radius: 3px;
 }
 
 .wallet-info {
-  background-color: #fff;
-  padding: 12px 16px;
-  border-radius: 8px;
+  background-color: #f5f7fa;
+  padding: 16px;
+  border-radius: 12px;
   width: 100%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  margin-bottom: 16px;
-  font-size: 0.95rem;
+  margin-bottom: 24px;
+  font-size: 1rem;
+  border-left: 4px solid #000000;
 }
 
 .eth-rate-container {
-  margin-bottom: 16px;
-  color: #555;
-  font-size: 0.95rem;
+  margin-bottom: 24px;
+  color: #333333;
+  font-size: 1.1rem;
+  font-weight: 500;
+  background-color: #f5f7fa;
+  padding: 12px 16px;
+  border-radius: 12px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.amount-input {
-  width: 100%;
-  margin-bottom: 16px;
+
+.amount-input ::ng-deep .mat-mdc-form-field-flex {
+  background-color: #f5f7fa;
+  border-radius: 12px;
+  padding: 0 16px;
+}
+
+.amount-input ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+  display: none;
 }
 
 .eth-amount-display {
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
+  background-color: #f5f7fa;
+  padding: 20px;
+  border-radius: 12px;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.eth-amount-display p {
+  margin: 0 0 8px 0;
+  color: #333333;
+  font-size: 1rem;
 }
 
 .eth-amount-display h3 {
   margin: 0;
-  font-size: 1.4rem;
-  color: #242f51;
+  font-size: 1.8rem;
+  color: #000000;
+  font-weight: 700;
 }
 
 .fee-info {
   display: flex;
-  align-items: center;        /* Vertically align icon and text */
+  align-items: center;
   justify-content: flex-start;
-  gap: 8px;                   /* Space between icon and text */
-  font-size: 0.9rem;          /* Adjust text size for mobile */
-  color: #777;                /* Light grey text */
-  margin: 16px 0;             /* Top and bottom spacing */
-  width: 100%;                /* Take full width if needed */
+  gap: 12px;
+  font-size: 0.95rem;
+  color: #333333;
+  margin: 24px 0;
+  width: 100%;
+  background-color: #f5f7fa;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.fee-info:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .fee-info mat-icon {
-  font-size: 20px;            /* Size of the icon */
+  font-size: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1;             /* Remove extra line spacing */
+  line-height: 1;
+  color: #000000;
 }
-
 
 .buy-button {
   width: 100%;
-  padding: 12px;
-  font-size: 1rem;
+  padding: 16px;
+  font-size: 1.1rem;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #000000, #333333);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  margin-top: 8px;
+}
+
+.buy-button:hover:not([disabled]) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.buy-button:disabled {
+  background: #cccccc;
+  box-shadow: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .wallet-buy-container {
+    padding: 24px 16px;
+    border-radius: 12px;
+  }
+
+  .wallet-title {
+    font-size: 1.6rem;
+  }
+
+  .eth-amount-display h3 {
+    font-size: 1.6rem;
+  }
+
+  .buy-button {
+    padding: 14px;
+  }
 }

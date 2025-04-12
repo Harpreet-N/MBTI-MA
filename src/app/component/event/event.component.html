@@ -76,6 +76,12 @@
     <span>{{ selectedEvent.location }}</span>
   </div>
 
+  <!-- Cost -->
+  <div class="detail-info cost-info">
+    <mat-icon>local_offer</mat-icon>
+    <span>Free Entry</span>
+  </div>
+
   <!-- Event Description -->
   <div class="event-description">
     <h3>Description</h3>
@@ -84,6 +90,7 @@
 
   <!-- Tags -->
   <div class="tags">
+    <h3 class="tags-title">Type:</h3>
     <mat-chip-set>
       <mat-chip color="accent" *ngFor="let type of selectedEvent.type">{{ type }}</mat-chip>
     </mat-chip-set>

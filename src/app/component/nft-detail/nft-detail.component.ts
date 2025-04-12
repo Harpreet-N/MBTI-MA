@@ -66,7 +66,7 @@ export class NftDetailComponent implements OnInit {
   ngOnInit(): void {
     const nftId = +this.route.snapshot.paramMap.get('id')!;
     this.nft = this.nfts.find(item => item.id === nftId);
-    
+
     // Check if we came from profile using query parameters
     this.route.queryParams.subscribe(params => {
       this.cameFromProfile = params['source'] === 'profile';
@@ -78,7 +78,7 @@ export class NftDetailComponent implements OnInit {
 
   private checkIfOwned(): void {
     if (!this.nft) return;
-    
+
     const userNfts = JSON.parse(sessionStorage.getItem('nftList') || '[]');
     this.isOwned = userNfts.some((ownedNft: NFT) => ownedNft.id === this.nft?.id);
   }
@@ -93,9 +93,9 @@ export class NftDetailComponent implements OnInit {
 
   buyNFT() {
     if (this.isOwned) return;
-    
+
     const dialogRef = this.dialog.open(BuyDialogComponent, {
-      width: '300px',
+      width: '600px',
       data: { nft: this.nft }
     });
 

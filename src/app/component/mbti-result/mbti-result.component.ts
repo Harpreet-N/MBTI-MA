@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {NgIf} from '@angular/common';
-import {MatButton} from '@angular/material/button';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 import {GasComponent} from '../gas/gas.component';
 import {Router} from '@angular/router';
 
@@ -8,7 +9,8 @@ import {Router} from '@angular/router';
   selector: 'app-mbti-result',
   imports: [
     NgIf,
-    MatButton,
+    MatButtonModule,
+    MatIconModule,
     GasComponent,
   ],
   templateUrl: './mbti-result.component.html',
@@ -174,7 +176,7 @@ They excel in roles related to teaching, healthcare, and public service.
     ENFJ: {
       character: "The Protagonist",
       description: `
-ENFJs are charismatic, empathetic, and inspiring leaders who are passionate about helping others grow and succeed. They understand people’s emotions and motivations deeply.
+ENFJs are charismatic, empathetic, and inspiring leaders who are passionate about helping others grow and succeed. They understand people's emotions and motivations deeply.
 
 Organized and strategic, ENFJs can turn big visions into actionable plans. They are often found in leadership, education, counseling, or advocacy roles.
 
